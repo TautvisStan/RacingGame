@@ -33,9 +33,6 @@ public class Player : MonoBehaviour
 
     private SoundEffects soundEffectsController;
 
-
-    public GameObject Firework;
-
     public AudioSource CPAudio;
 
     private void Awake()
@@ -45,13 +42,23 @@ public class Player : MonoBehaviour
         timerController = FindObjectOfType<SinglePlayerTimer>();
         mptimerController = FindObjectOfType<MultiPlayerTimer>();
         soundEffectsController = FindObjectOfType<SoundEffects>();
+        CPAudio = GameObject.Find("CPAudio").GetComponent<AudioSource>();
     }
-      private void Start()
+      private void StartRacing()
       {
           UpdateCheckpointText();
           UpdateLapText();
         //  UpdatePowerupText();
       }
+
+        public void SetCar(int cps, Text cp, Text lap, Text Powerup)
+        {
+            Cps = cps;
+            CheckPointText = cp;
+            LapText = lap;
+            PowerUpsText = Powerup;
+            this.StartRacing();
+        }
   
       private void UpdateCheckpointText()
       {
@@ -103,12 +110,8 @@ public class Player : MonoBehaviour
           {
               AddPowerup(1);
               Debug.Log("Player touched the powerup");
-              collision.gameObject.SetActive(false);
-              var coord = collision.gameObject.transform.position;
-             // GameObject firework = Instantiate(Firework, coord, Quaternion.identity);
-              Firework.GetComponent<ParticleSystem>().Play();
-              Destroy(collision.gameObject);
-              powerupController.CreatePowerup(coord);
+            powerupController.ActivatePowerup(collision.gameObject);
+              
           }
       }
 

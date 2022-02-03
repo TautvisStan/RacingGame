@@ -1,10 +1,5 @@
-dfdfs 16,2437
-dfdfs 13,18594
-dfdfs 12,94496
-dfdfs 16,09747
-dfdfs 13,60853
-dfdfs 17,3061
-dfdfs 12,69354
-dfdfs 17,57964
-dfdfs 29,06051
-dfdfs 21,53522
+dfdfs 50
+dfdfs 10,85548
+dfdfs 18,73645
+dfdfs 34,46073
+Naujas 16,74284

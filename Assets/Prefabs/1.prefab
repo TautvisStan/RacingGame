@@ -299,7 +299,6 @@ MonoBehaviour:
   CheckPointText: {fileID: 0}
   LapText: {fileID: 0}
   PowerUpsText: {fileID: 0}
-  Firework: {fileID: 0}
   CPAudio: {fileID: 0}
 --- !u!114 &5018725249674216311
 MonoBehaviour:

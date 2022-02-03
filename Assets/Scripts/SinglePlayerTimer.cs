@@ -20,7 +20,7 @@ public class SinglePlayerTimer : MonoBehaviour
     private float bestTime = float.MaxValue;
     public GameObject player;
     private string Name;
-    void Awake()
+    public void StartCountdown()
     {
         StartCoroutine(Countdown(3));
         player.GetComponent<PlayerController>().enabled = false;
@@ -97,9 +97,6 @@ public class SinglePlayerTimer : MonoBehaviour
 
             string bestText = String.Format("Best time {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
             best.text = bestText;
-
-
-
         }
     }
 }
