@@ -495,8 +495,8 @@ MonoBehaviour:
   - {fileID: 6395538032150037187, guid: 8d576215c3e856740ba6e9dfa66fcbad, type: 3}
   Cars:
   - {fileID: 9073813021564527022, guid: f374cd74b233d194fb0b413ea999293f, type: 3}
-  EscMenu: {fileID: 0}
-  SinglePlayerCanvas: {fileID: 0}
+  EscMenu: {fileID: 962863514}
+  SinglePlayerCanvas: {fileID: 1327816843}
 --- !u!4 &819442575
 Transform:
   m_ObjectHideFlags: 0
@@ -511,6 +511,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &962863514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7227440643473109716, guid: 14c310615dbede9468707b0daa8c34f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 995575744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &995575744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -699,6 +705,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e944945a8d4ec914985176f6be72b347, type: 3}
+--- !u!1 &1327816843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1608686088695984598, guid: 676e0f8065a9c5b41ba718664f066444,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704734811}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1704734811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -706,6 +718,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1608686088565090454, guid: 676e0f8065a9c5b41ba718664f066444,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608686088565090456, guid: 676e0f8065a9c5b41ba718664f066444,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1608686088695984598, guid: 676e0f8065a9c5b41ba718664f066444,
         type: 3}
       propertyPath: m_Name
