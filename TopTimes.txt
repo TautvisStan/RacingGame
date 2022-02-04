@@ -3,3 +3,4 @@ dfdfs 10,85548
 dfdfs 18,73645
 dfdfs 34,46073
 Naujas 16,74284
+Naujas 17,48476

@@ -27,7 +27,7 @@ public class MultiPlayerTimer : MonoBehaviour
     public AudioSource finishAudio;
     public GameObject GameOverUI;
     public Canvas gameUI;
-    void Awake()
+    public void StartCountdown()
     {
         StartCoroutine(Countdown(3));
         foreach (GameObject player in players)
