@@ -14,7 +14,10 @@ public class MainMenu : MonoBehaviour
     }
     public void PlaySP()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Singleton singleton = FindObjectOfType<Singleton>();
+        singleton.PlayerCount = 1;
+        singleton.GameReady = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
     }
     public void PlayMP()
     {

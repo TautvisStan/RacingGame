@@ -24,9 +24,11 @@ public class SetupController : MonoBehaviour
 
     void Start()
     {
-        // SetupSinglePlayer(0, 0);
-        int[] carID = new int[] { 0, 0 };
-        SetupMultiPlayer(0, carID);
+        Singleton singleton = FindObjectOfType<Singleton>();
+        singleton.StartGame();
+      //   SetupSinglePlayer(0, 2);
+      //  int[] carID = new int[] { 0, 0 };
+       // SetupMultiPlayer(0, carID);
     }
 
     // Update is called once per frame

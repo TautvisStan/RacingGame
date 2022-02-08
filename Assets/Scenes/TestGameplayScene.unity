@@ -749,6 +749,8 @@ MonoBehaviour:
   - {fileID: 6395538032150037187, guid: 8d576215c3e856740ba6e9dfa66fcbad, type: 3}
   Cars:
   - {fileID: 9073813021564527022, guid: f374cd74b233d194fb0b413ea999293f, type: 3}
+  - {fileID: 9073813021564527022, guid: e77ef80f3a14e5b438d5ff99b9ef931e, type: 3}
+  - {fileID: 9073813021564527022, guid: c7d6d113736aec541a138e96ab06a85c, type: 3}
   EscMenu: {fileID: 962863514}
   SinglePlayerCanvas: {fileID: 1327816843}
   MultiPlayerCanvas: {fileID: 1977622298}

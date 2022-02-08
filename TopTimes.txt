@@ -4,3 +4,11 @@ dfdfs 18,73645
 dfdfs 34,46073
 Naujas 16,74284
 Naujas 17,48476
+Naujas 84,22923
+Naujas 16,44255
+Naujas 16,84003
+Naujas 11,42003
+Naujas 12,35365
+Naujas 13,35261
+Naujas 40,51436
+Naujas 12,62794

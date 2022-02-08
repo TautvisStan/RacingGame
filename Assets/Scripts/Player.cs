@@ -74,9 +74,10 @@ public class Player : MonoBehaviour
       }
       private void AddCheckpoint(int value, Vector3 coord)
       {
-          if (value == checkpoint + 1)
+        if (value == checkpoint + 1)
           {
-              checkpoint += 1;
+            
+            checkpoint += 1;
               if (checkpoint == Cps)
               {
                   checkpoint = 0;
