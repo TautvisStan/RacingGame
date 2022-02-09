@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         timerController = FindObjectOfType<SinglePlayerTimer>();
         mptimerController = FindObjectOfType<MultiPlayerTimer>();
         soundEffectsController = FindObjectOfType<SoundEffects>();
-        CPAudio = GameObject.Find("CPAudio").GetComponent<AudioSource>();
+        //CPAudio = GameObject.Find("CPAudio").GetComponent<AudioSource>();
     }
       private void StartRacing()
       {
