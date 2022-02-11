@@ -7,6 +7,9 @@ public class Singleton : MonoBehaviour
     public static Singleton i;
     public bool GameReady = false;
     public int PlayerCount;
+    public int[] CarID;
+    public int TrackID;
+    public bool CarsSelected = false;
 
     void Awake()
     {
@@ -24,11 +27,14 @@ public class Singleton : MonoBehaviour
         if (GameReady == true)
         {
             GameReady = false;
+            CarsSelected = false;
             SetupController setupController = FindObjectOfType<SetupController>();
             if (PlayerCount == 1)
             {
-                 setupController.SetupSinglePlayer(0, 0);
+                 setupController.SetupSinglePlayer(TrackID, CarID[0]);
             }
+            else
+                setupController.SetupMultiPlayer(TrackID, CarID);
 
         }
     }

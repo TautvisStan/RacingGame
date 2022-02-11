@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
                 else
                     mptimerController.LapTime(Int32.Parse(this.name), lapsCompleted);
               }
-            CPAudio.Play();
+            //CPAudio.Play();
             UpdateCheckpointText();
           }
       }

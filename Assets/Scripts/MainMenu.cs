@@ -16,12 +16,13 @@ public class MainMenu : MonoBehaviour
     {
         Singleton singleton = FindObjectOfType<Singleton>();
         singleton.PlayerCount = 1;
-        singleton.GameReady = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        singleton.CarID = new int[1];
     }
     public void PlayMP()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        Singleton singleton = FindObjectOfType<Singleton>();
+        singleton.PlayerCount = 2;
+        singleton.CarID = new int[2];
     }
 
     public void Quit()
