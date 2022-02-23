@@ -8,6 +8,9 @@ TagManager:
   - Checkpoint
   - FunCube
   - Fence
+  - CarModel
+  - CarScript
+  - CarColorable
   layers:
   - Default
   - TransparentFX

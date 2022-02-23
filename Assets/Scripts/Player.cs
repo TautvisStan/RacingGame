@@ -12,9 +12,6 @@ public class Player : MonoBehaviour
 
     private int powerupsPicked = 0;
     
-    [Header("Checkpoints in the track")] 
-    [SerializeField] 
-    private int Cps;
 
     [Header("UI")] 
     [SerializeField] 
@@ -30,10 +27,11 @@ public class Player : MonoBehaviour
     private PowerupController powerupController;
     private SinglePlayerTimer timerController;
     private MultiPlayerTimer mptimerController;
+    private CheckpointController checkpointController;
 
     private SoundEffects soundEffectsController;
 
-    public AudioSource CPAudio;
+   // public AudioSource CPAudio;
 
     private void Awake()
     {
@@ -42,6 +40,7 @@ public class Player : MonoBehaviour
         timerController = FindObjectOfType<SinglePlayerTimer>();
         mptimerController = FindObjectOfType<MultiPlayerTimer>();
         soundEffectsController = FindObjectOfType<SoundEffects>();
+        checkpointController = FindObjectOfType<CheckpointController>();
         //CPAudio = GameObject.Find("CPAudio").GetComponent<AudioSource>();
     }
       private void StartRacing()
@@ -51,9 +50,8 @@ public class Player : MonoBehaviour
         //  UpdatePowerupText();
       }
 
-        public void SetCar(int cps, Text cp, Text lap, Text Powerup)
+        public void SetCar(Text cp, Text lap, Text Powerup)
         {
-            Cps = cps;
             CheckPointText = cp;
             LapText = lap;
             PowerUpsText = Powerup;
@@ -72,37 +70,41 @@ public class Player : MonoBehaviour
       {
           PowerUpsText.text = $"Powerups collected: {powerupsPicked}";
       }
-      private void AddCheckpoint(int value, Vector3 coord)
-      {
-        if (value == checkpoint + 1)
-          {
-            
-            checkpoint += 1;
-              if (checkpoint == Cps)
-              {
-                  checkpoint = 0;
-                  lapsCompleted += 1;
-                  UpdateLapText();
-                if (timerController != null)
-                    timerController.LapTime();
-                else
-                    mptimerController.LapTime(Int32.Parse(this.name), lapsCompleted);
-              }
-            //CPAudio.Play();
-            UpdateCheckpointText();
-          }
-      }
+
       private void AddPowerup(int value)
       {
           powerupsPicked += value;
           UpdatePowerupText();
       }
-      void OnTriggerEnter(Collider collision)
+    public void AddCheckpoint()
+    {
+        checkpoint += 1;
+        UpdateCheckpointText();
+    }
+    public void AddLap()
+    {
+        checkpoint = 0;
+        lapsCompleted += 1;
+        UpdateLapText();
+        if (timerController != null)
+            timerController.LapTime();
+        else
+            mptimerController.LapTime(int.Parse(transform.parent.name), lapsCompleted);
+        UpdateCheckpointText();
+    }
+
+    public void RegisterCheckpoint(GameObject cp)
+    {
+        var coord = cp.gameObject.transform.position;
+        checkpointController.AddCheckpoint(cp.gameObject, this, checkpoint);
+    }
+    /*  void OnTriggerEnter(Collider collision)
       {
+        Debug.Log("CPPP");
           if (collision.CompareTag("Checkpoint"))
           {
             var coord = collision.gameObject.transform.position;
-            AddCheckpoint(int.Parse(collision.name), coord);
+            checkpointController.AddCheckpoint(collision.gameObject, this, checkpoint);
             
             
           }
@@ -115,9 +117,9 @@ public class Player : MonoBehaviour
               
           }
       }
+    */
 
-
-    void OnCollisionEnter(Collision collision)
+  /*  void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("FunCube"))
         {
@@ -134,5 +136,5 @@ public class Player : MonoBehaviour
             soundEffectsController.PlayCarContactSound();
         }
 
-    }
+    }*/
 }

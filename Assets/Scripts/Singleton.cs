@@ -10,9 +10,18 @@ public class Singleton : MonoBehaviour
     public int[] CarID;
     public int TrackID;
     public bool CarsSelected = false;
+    public GameObject[] Vehicles;
+    public GameObject[] Tracks;
     public Dictionary<string, KeyCode> controlsP1 = new Dictionary<string, KeyCode>();
     public Dictionary<string, KeyCode> controlsP2 = new Dictionary<string, KeyCode>();
 
+    public List<Dictionary<string, KeyCode>> PassControlsToSetup()
+    {
+        List<Dictionary<string, KeyCode>> list = new List<Dictionary<string, KeyCode>>();
+        list.Add(controlsP1);
+        list.Add(controlsP2);
+        return list;
+    }
     private void SetDefaultControlsP1()
     {
         controlsP1.Add("Forwards", KeyCode.W);
@@ -39,18 +48,10 @@ public class Singleton : MonoBehaviour
     {
         if (player == 1)
         {
-            if (controlsP1.Count == 0)
-            {
-                SetDefaultControlsP1();
-            }
             return controlsP1;
         }
         if (player == 2)
         {
-            if (controlsP2.Count == 0)
-            {
-                SetDefaultControlsP2();
-            }
             return controlsP2;
         }
         return null;
@@ -69,6 +70,10 @@ public class Singleton : MonoBehaviour
         {
             i = this;
             DontDestroyOnLoad(gameObject);
+            // Load controls from file
+            SetDefaultControlsP1();
+            SetDefaultControlsP2();
+
         }
         else
             Destroy(gameObject);

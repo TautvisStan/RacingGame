@@ -23,7 +23,7 @@ public class SinglePlayerTimer : MonoBehaviour
     public void StartCountdown()
     {
         StartCoroutine(Countdown(3));
-        player.GetComponent<PlayerController>().enabled = false;
+        player.GetComponentInChildren<PlayerController>().enabled = false;
         Name = PlayerPrefs.GetString("PlayerName", "Player");
     }
 
@@ -64,7 +64,7 @@ public class SinglePlayerTimer : MonoBehaviour
     {
         startTime = Time.time;
         started = true;
-        player.GetComponent<PlayerController>().enabled = true;
+        player.GetComponentInChildren<PlayerController>().enabled = true;
     }
     void Update()
     {

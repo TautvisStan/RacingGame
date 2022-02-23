@@ -10,15 +10,17 @@ public class CarSelect : MonoBehaviour
     private Singleton singleton;
     private GameObject PodiumCar;
     public GameObject CarSpawn;
-    public GameObject[] Cars;
+    private GameObject[] Cars;
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
+        Cars = singleton.Vehicles;
     }
     public void DisplayCar()
     {
         GameObject.Destroy(PodiumCar);
-        PodiumCar = Instantiate(Cars[CarID], CarSpawn.transform.position, CarSpawn.transform.rotation);
+        PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
+        SetLayerRecursively(PodiumCar, "UI");
         // PodiumCar.transform.localScale = CarSpawn.transform.localScale;
     }
     public void Play()
@@ -71,5 +73,14 @@ public class CarSelect : MonoBehaviour
         else
             CarID++;
         DisplayCar();
+    }
+    public static void SetLayerRecursively(GameObject obj, string layerName)
+    {
+        obj.layer = LayerMask.NameToLayer(layerName);
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layerName);
+        }
     }
 }

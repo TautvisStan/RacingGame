@@ -31570,10 +31570,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarSpawn: {fileID: 53388276}
-  Cars:
-  - {fileID: 9073813021564527022, guid: c36bf4e068a19d34895241b966e6bf54, type: 3}
-  - {fileID: 9073813021564527022, guid: 4a1314c27fc93b94ca3054532c51d818, type: 3}
-  - {fileID: 9073813021564527022, guid: 63620736c1591bd409c9dcccda643982, type: 3}
 --- !u!4 &1881163577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490142916067341928, guid: 8806c3d025a037746b2f0a9209e92fb9,
@@ -31862,6 +31858,9 @@ MonoBehaviour:
   CarID: 
   TrackID: 0
   CarsSelected: 0
+  Vehicles:
+  - {fileID: 9073813021564527022, guid: 9cbb90c06ab0ebe4a9b564034fdf24ed, type: 3}
+  Tracks: []
 --- !u!4 &1888827301
 Transform:
   m_ObjectHideFlags: 0

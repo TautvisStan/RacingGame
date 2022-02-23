@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject Model;
     [SerializeField] private KeyCode Forwards;
     [SerializeField] private KeyCode Backwards;
     [SerializeField] private KeyCode Left;
     [SerializeField] private KeyCode Right;
     [SerializeField] private KeyCode Reset;
     [SerializeField] private KeyCode Break;
+    [SerializeField] private KeyCode Confirm;
 
     private float horizontalInput;
     private float verticalInput;
@@ -41,11 +43,20 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(Reset))
         {
-            transform.localRotation =
-           Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
+            Model.transform.localRotation =
+           Quaternion.Euler(0, Model.transform.rotation.eulerAngles.y, 0);
         }
     }
-
+    public void SetControls(Dictionary<string, KeyCode> controls)
+    {
+        Forwards = controls["Forwards"];
+        Backwards = controls["Backwards"];
+        Left = controls["Left"];
+        Right = controls["Right"];
+        Reset = controls["Reset"];
+        Break = controls["Break"];
+        Confirm = controls["Confirm"];
+    }
 
     private void GetInput()
     {

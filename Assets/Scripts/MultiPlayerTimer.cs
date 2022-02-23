@@ -31,7 +31,7 @@ public class MultiPlayerTimer : MonoBehaviour
     {
         StartCoroutine(Countdown(3));
         foreach (GameObject player in players)
-            player.GetComponent<PlayerController>().enabled = false;
+            player.GetComponentInChildren<PlayerController>().enabled = false;
     }
 
     IEnumerator Countdown(int seconds)
@@ -73,7 +73,7 @@ public class MultiPlayerTimer : MonoBehaviour
         startTime2 = Time.time;
         started = true;
         foreach (GameObject player in players)
-            player.GetComponent<PlayerController>().enabled = true;
+            player.GetComponentInChildren<PlayerController>().enabled = true;
     }
     void Update()
     {
@@ -132,10 +132,10 @@ public class MultiPlayerTimer : MonoBehaviour
             gameUI.enabled = false;
             foreach (GameObject player in players)
             {
-                player.GetComponent<PlayerController>().enabled = false;
-                player.GetComponent<Player>().enabled = false;
-                player.GetComponent<Rigidbody>().isKinematic = true;
-                player.GetComponent<VelocityAudio>().stopEngineSound();
+                player.GetComponentInChildren<PlayerController>().enabled = false;
+                player.GetComponentInChildren<Player>().enabled = false;
+                player.GetComponentInChildren<Rigidbody>().isKinematic = true;
+                player.GetComponentInChildren<VelocityAudio>().stopEngineSound();
             }
             finishAudio.Play();
             GameOverUI.GetComponent<GameOver>().EndRace(playerNum, bestTime2, bestTime1);
