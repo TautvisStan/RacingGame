@@ -17,3 +17,4 @@ Naujas 11,83438
 Naujas 10,82399
 Naujas 12,35883
 Naujas 19,78619
+Naujas 36,02843
