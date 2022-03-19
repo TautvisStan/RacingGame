@@ -9,7 +9,7 @@ public class ControlsMenu : MonoBehaviour
     public Dictionary<string, KeyCode> controls = new Dictionary<string, KeyCode>();
     private int PlayerNumber = 1;
     private GameObject currentKey;
-    public Text Forwards, Backwards, Left, Right, Break, Reset, Confirm;
+    public Text Forwards, Backwards, Left, Right, Brake, Reset, Confirm;
     private bool changed = false;
     private void Awake()
     {
@@ -32,13 +32,28 @@ public class ControlsMenu : MonoBehaviour
     }
     public void Setup()
     {
-        Forwards.text = controls["Forwards"].ToString();
-        Backwards.text = controls["Backwards"].ToString();
-        Left.text = controls["Left"].ToString();
-        Right.text = controls["Right"].ToString();
-        Break.text = controls["Break"].ToString();
-        Reset.text = controls["Reset"].ToString();
-        Confirm.text = controls["Confirm"].ToString();
+        Forwards.text = TryGetControls(controls, "Forwards");
+
+        Backwards.text = TryGetControls(controls, "Backwards");
+        Left.text = TryGetControls(controls, "Left");
+        Right.text = TryGetControls(controls, "Right");
+        Brake.text = TryGetControls(controls, "Brake");
+        Reset.text = TryGetControls(controls, "Reset");
+        Confirm.text = TryGetControls(controls, "Confirm");
+    }
+    private string TryGetControls(Dictionary<string, KeyCode> controls, string key)
+    {
+        KeyCode keyCode = KeyCode.None;
+        controls.TryGetValue(key, out keyCode);
+        if (keyCode == KeyCode.None)
+        {
+            return "None";
+        }
+
+        else
+        {
+            return keyCode.ToString();
+        }
     }
     private void OnGUI()
     {

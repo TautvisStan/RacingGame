@@ -6,22 +6,90 @@ using UnityEngine.SceneManagement;
 public class CarSelect : MonoBehaviour
 {
     private int CarID = 0;
-    private int PlayerNumber = 0;
+    public int PlayerNumber;
     private Singleton singleton;
     private GameObject PodiumCar;
     public GameObject CarSpawn;
     private GameObject[] Cars;
+    private bool active = false;
+    private bool selected = false;
+    public MultiPlayerSelect multiPlayerSelect;
+    public GameObject PressToJoin;
+    public GameObject Podium;
+    public GameObject Ready;
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
         Cars = singleton.Vehicles;
+    }
+    public void ClickedConfirm()
+    {
+        if (!active && !selected)
+        {
+            PressToJoin.SetActive(true);
+            active = true;
+            multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
+            PressToJoin.SetActive(false);
+            Podium.SetActive(true);
+            DisplayCar();
+        }
+        else
+        {
+            if (!selected)
+            {
+                selected = true;
+                active = false;
+                Ready.SetActive(true);
+                multiPlayerSelect.PlayerSelecting(PlayerNumber, false);
+                multiPlayerSelect.PlayerDone(PlayerNumber, true);
+            }
+        }
+    }
+    public void ClickedCancel()
+    {
+        if (active)
+        {
+            active = false;
+            multiPlayerSelect.PlayerSelecting(PlayerNumber, false);
+            PressToJoin.SetActive(true);
+            Podium.SetActive(false);
+            Destroy(PodiumCar);
+            multiPlayerSelect.CheckIfReady();
+        }
+        else
+        {
+            if (selected)
+            {
+                selected = false;
+                active = true;
+                Ready.SetActive(false);
+                multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
+                multiPlayerSelect.PlayerDone(PlayerNumber, false);
+            }
+        }
+    }
+    public void ClickedLeft()
+    {
+        if (active)
+        {
+            Left();
+        }
+    }
+    public void ClickedRight()
+    {
+        if (active)
+        {
+            Right();
+        }
     }
     public void DisplayCar()
     {
         GameObject.Destroy(PodiumCar);
         PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
         SetLayerRecursively(PodiumCar, "UI");
-        // PodiumCar.transform.localScale = CarSpawn.transform.localScale;
+        PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
+         PodiumCar.transform.localScale = CarSpawn.transform.localScale;
+        PodiumCar.GetComponent<Rigidbody>().mass = 2500;
     }
     public void Play()
     {
