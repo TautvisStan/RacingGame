@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         Left = controls["Left"];
         Right = controls["Right"];
         Reset = controls["Reset"];
-        Break = controls["Break"];
+        Break = controls["Brake"];
         Confirm = controls["Confirm"];
     }
 

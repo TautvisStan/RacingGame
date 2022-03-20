@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 2762218703227959034}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Player
+  m_TagString: CarColorable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 1394258419333161827}
   m_Layer: 0
   m_Name: Top
-  m_TagString: Player
+  m_TagString: CarColorable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

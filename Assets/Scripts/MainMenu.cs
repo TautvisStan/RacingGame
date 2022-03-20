@@ -15,14 +15,16 @@ public class MainMenu : MonoBehaviour
     public void PlaySP()
     {
         Singleton singleton = FindObjectOfType<Singleton>();
-        singleton.PlayerCount = 1;
-        singleton.CarID = new int[1];
+        //singleton.PlayerCount = 1;
+        singleton.CarID = new int[4];
+        singleton.MaterialID = new int[4];
     }
     public void PlayMP()
     {
         Singleton singleton = FindObjectOfType<Singleton>();
-        singleton.PlayerCount = 2;
-        singleton.CarID = new int[2];
+       // singleton.PlayerCount = 2;
+        singleton.CarID = new int[4];
+        singleton.MaterialID = new int[4];
     }
 
     public void Quit()

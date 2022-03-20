@@ -17,11 +17,18 @@ public class CarSelect : MonoBehaviour
     public GameObject PressToJoin;
     public GameObject Podium;
     public GameObject Ready;
+    private int materialNum = -1;
+    public CarColors carColors;
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
         Cars = singleton.Vehicles;
     }
+    public void DeleteCar()
+    {
+        Destroy(PodiumCar);
+    }
+
     public void ClickedConfirm()
     {
         if (!active && !selected)
@@ -37,11 +44,15 @@ public class CarSelect : MonoBehaviour
         {
             if (!selected)
             {
+                singleton.CarID[PlayerNumber] = CarID;
+                singleton.MaterialID[PlayerNumber] = materialNum;
+                singleton.Players[PlayerNumber] = true;
                 selected = true;
                 active = false;
                 Ready.SetActive(true);
                 multiPlayerSelect.PlayerSelecting(PlayerNumber, false);
                 multiPlayerSelect.PlayerDone(PlayerNumber, true);
+
             }
         }
     }
@@ -55,6 +66,7 @@ public class CarSelect : MonoBehaviour
             Podium.SetActive(false);
             Destroy(PodiumCar);
             multiPlayerSelect.CheckIfReady();
+            materialNum = carColors.ClearColor(materialNum);
         }
         else
         {
@@ -65,6 +77,7 @@ public class CarSelect : MonoBehaviour
                 Ready.SetActive(false);
                 multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
                 multiPlayerSelect.PlayerDone(PlayerNumber, false);
+                singleton.Players[PlayerNumber] = false;
             }
         }
     }
@@ -82,46 +95,43 @@ public class CarSelect : MonoBehaviour
             Right();
         }
     }
+    public void ClickedUp()
+    {
+        if (active)
+        {
+            materialNum = carColors.SetColorsNext(PodiumCar, materialNum);
+        }
+    }
+    public void ClickedDown()
+    {
+        if (active)
+        {
+            materialNum = carColors.SetColorsPrevious(PodiumCar, materialNum);
+        }
+    }
     public void DisplayCar()
     {
         GameObject.Destroy(PodiumCar);
         PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
+        //PodiumCar.transform.SetParent(CarSpawn.transform, true);
         SetLayerRecursively(PodiumCar, "UI");
         PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
          PodiumCar.transform.localScale = CarSpawn.transform.localScale;
         PodiumCar.GetComponent<Rigidbody>().mass = 2500;
-    }
-    public void Play()
-    {
-        singleton.CarID[PlayerNumber] = CarID;
-        PlayerNumber++;
-        if (PlayerNumber == singleton.PlayerCount)
+        if (materialNum == -1)
         {
-            singleton.CarsSelected = true;
-            GameObject.Destroy(PodiumCar);
+            materialNum = carColors.SetColorsNext(PodiumCar, materialNum);
         }
         else
         {
-            CarID = 0;
-            DisplayCar();
+            carColors.SetColor(PodiumCar, materialNum);
         }
     }
-    public void NextMenu(GameObject TrackSelectMenu)
+    public void Play()
     {
-        if (singleton.CarsSelected)
-        {
-            this.gameObject.SetActive(false);
-            TrackSelectMenu.SetActive(true);
-           
-        }
+
     }
-    public void NextMenuStart(TrackSelect TrackSelectScript)
-    {
-        if (singleton.CarsSelected)
-        {
-            TrackSelectScript.DisplayTrack();
-        }
-    }
+
     public void Left()
     {
         if (CarID == 0)

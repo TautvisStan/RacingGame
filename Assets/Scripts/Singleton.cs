@@ -6,12 +6,14 @@ public class Singleton : MonoBehaviour
 {
     public static Singleton i;
     public bool GameReady = false;
-    public int PlayerCount;
+    public bool[] Players;
     public int[] CarID;
+    public int[] MaterialID;
     public int TrackID;
     public bool CarsSelected = false;
     public GameObject[] Vehicles;
     public GameObject[] Tracks;
+    public Material[] Materials;
 
     List<Dictionary<string, KeyCode>> controlsList = new List<Dictionary<string, KeyCode>>();
     public List<Dictionary<string, KeyCode>> PassControlsToSetup()
@@ -69,6 +71,11 @@ public class Singleton : MonoBehaviour
 
     void Awake()
     {
+        Players = new bool[4];
+        for (int i = 0; i < Players.Length; i++)
+        {
+            Players[i] = false;
+        }
         Dictionary<string, KeyCode> controlsP1 = new Dictionary<string, KeyCode>();
         Dictionary<string, KeyCode> controlsP2 = new Dictionary<string, KeyCode>();
         Dictionary<string, KeyCode> controlsP3 = new Dictionary<string, KeyCode>();
@@ -98,12 +105,28 @@ public class Singleton : MonoBehaviour
             GameReady = false;
             CarsSelected = false;
             SetupController setupController = FindObjectOfType<SetupController>();
-            if (PlayerCount == 1)
+            int playersNum = 0;
+            int soloPlayer = -1;
+            for (int i = 0; i < Players.Length; i++)
             {
-                 setupController.SetupSinglePlayer(TrackID, CarID[0]);
+                if (Players[i])
+                {
+                    playersNum++;
+                    soloPlayer = i;
+                }
+            }
+            if (playersNum == 1)
+            {
+                setupController.SetupGame(TrackID, CarID, MaterialID, Players, true);
             }
             else
-                setupController.SetupMultiPlayer(TrackID, CarID);
+            {
+                setupController.SetupGame(TrackID, CarID, MaterialID, Players, false);
+            }
+            for (int i = 0; i < Players.Length; i++)
+            {
+                Players[i] = false;
+            }
 
         }
     }

@@ -30,8 +30,16 @@ public class MultiPlayerTimer : MonoBehaviour
     public void StartCountdown()
     {
         StartCoroutine(Countdown(3));
+     //   for (int i = 0; i < players.Length; i++)
         foreach (GameObject player in players)
-            player.GetComponentInChildren<PlayerController>().enabled = false;
+        {
+            if(player != null)
+            {
+                player.GetComponentInChildren<PlayerController>().enabled = false;
+            }
+        }
+
+            
     }
 
     IEnumerator Countdown(int seconds)
@@ -73,7 +81,12 @@ public class MultiPlayerTimer : MonoBehaviour
         startTime2 = Time.time;
         started = true;
         foreach (GameObject player in players)
-            player.GetComponentInChildren<PlayerController>().enabled = true;
+        {
+            if (player != null)
+            {
+                player.GetComponentInChildren<PlayerController>().enabled = true;
+            }
+        }
     }
     void Update()
     {

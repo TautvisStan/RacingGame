@@ -15380,6 +15380,7 @@ MonoBehaviour:
   PressToJoin: {fileID: 781913186}
   Podium: {fileID: 1127596327}
   Ready: {fileID: 238667044}
+  carColors: {fileID: 818904727}
 --- !u!1001 &536415543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21181,6 +21182,7 @@ RectTransform:
   - {fileID: 829418679}
   - {fileID: 2041572549}
   - {fileID: 1601807914}
+  - {fileID: 818904726}
   m_Father: {fileID: 427274792}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21206,6 +21208,7 @@ MonoBehaviour:
   - {fileID: 829418680}
   - {fileID: 2041572550}
   - {fileID: 1601807915}
+  TrackSelectMenu: {fileID: 145482854}
 --- !u!1 &630905988
 GameObject:
   m_ObjectHideFlags: 0
@@ -23402,6 +23405,54 @@ RectTransform:
   m_AnchoredPosition: {x: -136, y: -480}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &818904725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 818904726}
+  - component: {fileID: 818904727}
+  m_Layer: 5
+  m_Name: CarColors
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &818904726
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818904725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 619075737}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &818904727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818904725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce41beda8d3dac43986cd0b4bae53bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &819684437
 GameObject:
   m_ObjectHideFlags: 0
@@ -23748,6 +23799,7 @@ MonoBehaviour:
   PressToJoin: {fileID: 217829483}
   Podium: {fileID: 1572435847}
   Ready: {fileID: 949334828}
+  carColors: {fileID: 818904727}
 --- !u!4 &830889979 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490142916067341928, guid: 8806c3d025a037746b2f0a9209e92fb9,
@@ -30817,6 +30869,7 @@ MonoBehaviour:
   PressToJoin: {fileID: 89967255}
   Podium: {fileID: 235930294}
   Ready: {fileID: 61640492}
+  carColors: {fileID: 818904727}
 --- !u!4 &1605820461 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490142916067341928, guid: 8806c3d025a037746b2f0a9209e92fb9,
@@ -31642,6 +31695,7 @@ MonoBehaviour:
   PressToJoin: {fileID: 0}
   Podium: {fileID: 0}
   Ready: {fileID: 0}
+  carColors: {fileID: 0}
 --- !u!1 &1668713818
 GameObject:
   m_ObjectHideFlags: 0
@@ -33668,6 +33722,7 @@ MonoBehaviour:
   PressToJoin: {fileID: 0}
   Podium: {fileID: 0}
   Ready: {fileID: 0}
+  carColors: {fileID: 0}
 --- !u!4 &1881163577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490142916067341928, guid: 8806c3d025a037746b2f0a9209e92fb9,
@@ -33952,8 +34007,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameReady: 0
-  PlayerCount: 0
+  Players: 
   CarID: 
+  MaterialID: 
   TrackID: 0
   CarsSelected: 0
   Vehicles:
@@ -33961,6 +34017,10 @@ MonoBehaviour:
   - {fileID: 9073813021564527022, guid: e77ef80f3a14e5b438d5ff99b9ef931e, type: 3}
   - {fileID: 9073813021564527022, guid: c7d6d113736aec541a138e96ab06a85c, type: 3}
   Tracks: []
+  Materials:
+  - {fileID: 2100000, guid: f389eaa571835da4cba8bedba059566d, type: 2}
+  - {fileID: 2100000, guid: 901d0218814980149abae51a4035402b, type: 2}
+  - {fileID: 2100000, guid: fe1976536de19f147b36618fb1dff49f, type: 2}
 --- !u!4 &1888827301
 Transform:
   m_ObjectHideFlags: 0
@@ -35394,6 +35454,7 @@ MonoBehaviour:
   PressToJoin: {fileID: 1276081400}
   Podium: {fileID: 709446943}
   Ready: {fileID: 1951244224}
+  carColors: {fileID: 818904727}
 --- !u!1001 &2043964383
 PrefabInstance:
   m_ObjectHideFlags: 0
