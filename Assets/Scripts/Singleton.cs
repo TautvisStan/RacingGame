@@ -6,16 +6,38 @@ public class Singleton : MonoBehaviour
 {
     public static Singleton i;
     public bool GameReady = false;
-    public bool[] Players;
-    public int[] CarID;
-    public int[] MaterialID;
     public int TrackID;
     public bool CarsSelected = false;
-    public GameObject[] Vehicles;
-    public GameObject[] Tracks;
-    public Material[] Materials;
-
+    [SerializeField] private VehiclesKeeper Vehicles;
+    [SerializeField] private TracksKeeper Tracks;
+    [SerializeField] private MaterialsKeeper Materials;
+    [SerializeField] private PlayersKeeper Players;
     List<Dictionary<string, KeyCode>> controlsList = new List<Dictionary<string, KeyCode>>();
+    public void SetPlayer(int PlayerID, int CarID, int MaterialID)
+    {
+        Players.SetPlayerInfo(PlayerID, CarID, MaterialID);
+    }
+    public void UnSetPlayer(int PlayerID)
+    {
+        Players.UnSetPlayerInfo(PlayerID);
+    }
+    public Material[] PassMaterials()
+    {
+        return Materials.GetMaterials();
+    }
+    public GameObject[] PassVehicles()
+    {
+        return Vehicles.GetVehicles();
+    }
+    public GameObject[] PassTracks()
+    {
+        return Tracks.GetTracks();
+    }
+    public GameObject[] PassTracksDisplays()
+    {
+        return Tracks.GetTracksDisplays();
+    }
+    
     public List<Dictionary<string, KeyCode>> PassControlsToSetup()
     {
         return controlsList;
@@ -71,11 +93,6 @@ public class Singleton : MonoBehaviour
 
     void Awake()
     {
-        Players = new bool[4];
-        for (int i = 0; i < Players.Length; i++)
-        {
-            Players[i] = false;
-        }
         Dictionary<string, KeyCode> controlsP1 = new Dictionary<string, KeyCode>();
         Dictionary<string, KeyCode> controlsP2 = new Dictionary<string, KeyCode>();
         Dictionary<string, KeyCode> controlsP3 = new Dictionary<string, KeyCode>();
@@ -105,29 +122,15 @@ public class Singleton : MonoBehaviour
             GameReady = false;
             CarsSelected = false;
             SetupController setupController = FindObjectOfType<SetupController>();
-            int playersNum = 0;
-            int soloPlayer = -1;
-            for (int i = 0; i < Players.Length; i++)
-            {
-                if (Players[i])
-                {
-                    playersNum++;
-                    soloPlayer = i;
-                }
-            }
+            int playersNum = Players.GetPlayerCount();
             if (playersNum == 1)
             {
-                setupController.SetupGame(TrackID, CarID, MaterialID, Players, true);
+                setupController.SetupGame(TrackID, Players, true);
             }
             else
             {
-                setupController.SetupGame(TrackID, CarID, MaterialID, Players, false);
+                setupController.SetupGame(TrackID, Players, false);
             }
-            for (int i = 0; i < Players.Length; i++)
-            {
-                Players[i] = false;
-            }
-
         }
     }
 }

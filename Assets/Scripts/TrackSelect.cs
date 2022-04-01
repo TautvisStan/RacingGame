@@ -9,10 +9,11 @@ public class TrackSelect : MonoBehaviour
     private Singleton singleton;
     private GameObject PodiumTrack;
     public GameObject TrackSpawn;
-    public GameObject[] Tracks;
+    private GameObject[] Tracks;
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
+        Tracks = singleton.PassTracksDisplays();
     }
     public void DisplayTrack()
     {

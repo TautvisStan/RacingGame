@@ -22,7 +22,10 @@ public class CarSelect : MonoBehaviour
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
-        Cars = singleton.Vehicles;
+    }
+    public void Start()
+    {
+        Cars = singleton.PassVehicles();
     }
     public void DeleteCar()
     {
@@ -44,9 +47,7 @@ public class CarSelect : MonoBehaviour
         {
             if (!selected)
             {
-                singleton.CarID[PlayerNumber] = CarID;
-                singleton.MaterialID[PlayerNumber] = materialNum;
-                singleton.Players[PlayerNumber] = true;
+                singleton.SetPlayer(PlayerNumber, CarID, materialNum);
                 selected = true;
                 active = false;
                 Ready.SetActive(true);
@@ -77,7 +78,7 @@ public class CarSelect : MonoBehaviour
                 Ready.SetActive(false);
                 multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
                 multiPlayerSelect.PlayerDone(PlayerNumber, false);
-                singleton.Players[PlayerNumber] = false;
+                singleton.UnSetPlayer(PlayerNumber);
             }
         }
     }

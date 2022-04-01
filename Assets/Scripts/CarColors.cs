@@ -10,7 +10,7 @@ public class CarColors : MonoBehaviour
     void Start()
     {
         singleton = FindObjectOfType<Singleton>();
-        materials = singleton.Materials;
+        materials = singleton.PassMaterials();
         inUse = new bool[materials.Length];
         for (int i = 0; i < inUse.Length; i++)
         {
