@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class ControlsMenu : MonoBehaviour
 {
     private Singleton singleton;
-    public Dictionary<string, KeyCode> controls = new Dictionary<string, KeyCode>();
+    private Dictionary<string, KeyCode> controls = new Dictionary<string, KeyCode>();
     private int PlayerNumber = 1;
     private GameObject currentKey;
-    public Text Forwards, Backwards, Left, Right, Brake, Reset, Confirm;
+    [SerializeField] private Text Forwards, Backwards, Left, Right, Brake, Reset, Confirm;
     private bool changed = false;
     private void Awake()
     {
@@ -33,7 +33,6 @@ public class ControlsMenu : MonoBehaviour
     public void Setup()
     {
         Forwards.text = TryGetControls(controls, "Forwards");
-
         Backwards.text = TryGetControls(controls, "Backwards");
         Left.text = TryGetControls(controls, "Left");
         Right.text = TryGetControls(controls, "Right");
@@ -43,13 +42,11 @@ public class ControlsMenu : MonoBehaviour
     }
     private string TryGetControls(Dictionary<string, KeyCode> controls, string key)
     {
-        KeyCode keyCode = KeyCode.None;
-        controls.TryGetValue(key, out keyCode);
+        controls.TryGetValue(key, out KeyCode keyCode);
         if (keyCode == KeyCode.None)
         {
             return "None";
         }
-
         else
         {
             return keyCode.ToString();

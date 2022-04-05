@@ -44,10 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee56b4a85b51b0429b17a58f0dc86f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CheckPointText: {fileID: 0}
-  LapText: {fileID: 0}
-  PowerUpsText: {fileID: 0}
-  CPAudio: {fileID: 0}
 --- !u!114 &1271830779611368185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,9 +62,10 @@ MonoBehaviour:
   Left: 276
   Right: 275
   Reset: 114
-  Break: 32
+  Brake: 0
+  Confirm: 0
   motorForce: 1000
-  breakForce: 200
+  brakeForce: 3000
   maxSteerAngle: 45
   FLCol: {fileID: 0}
   FRCol: {fileID: 0}

@@ -122,15 +122,7 @@ public class Singleton : MonoBehaviour
             GameReady = false;
             CarsSelected = false;
             SetupController setupController = FindObjectOfType<SetupController>();
-            int playersNum = Players.GetPlayerCount();
-            if (playersNum == 1)
-            {
-                setupController.SetupGame(TrackID, Players, true);
-            }
-            else
-            {
-                setupController.SetupGame(TrackID, Players, false);
-            }
+            setupController.SetupGame(TrackID, Players);
         }
     }
 }

@@ -4,51 +4,45 @@ using UnityEngine;
 
 public class ObjectRotation : MonoBehaviour
 {
-    public Rigidbody ThisObject;
-    //Rotational Speed
-    public float speed = 0f;
-
-    //Forward Direction
-    public bool ForwardX = false;
-    public bool ForwardY = false;
-    public bool ForwardZ = false;
-
-    //Reverse Direction
-    public bool ReverseX = false;
-    public bool ReverseY = false;
-    public bool ReverseZ = false;
-
+    [SerializeField] private Rigidbody ThisObject;
+    [SerializeField] private float power = 0f;
+    [SerializeField] private bool ForwardX = false;
+    [SerializeField] private bool ForwardY = false;
+    [SerializeField] private bool ForwardZ = false;
+    [SerializeField] private bool ReverseX = false;
+    [SerializeField] private bool ReverseY = false;
+    [SerializeField] private bool ReverseZ = false;
     void Awake()
     {
-        //Forward Direction
-    /*    if (ForwardX == true)
+        if (ForwardX == true)
         {
-            ThisObject.AddTorque(Time.deltaTime * speed, 0, 0);
-          //  transform.(Time.deltaTime * speed, 0, 0, Space.Self);
-        }*/
+            Vector3 vector = new Vector3(power, 0, 0);
+            ThisObject.AddTorque(vector);
+        }
         if (ForwardY == true)
         {
-            Vector3 vector = new Vector3(0, speed, 0);
+            Vector3 vector = new Vector3(0, power, 0);
             ThisObject.AddTorque(vector);
-          //  transform.Rotate(0, Time.deltaTime * speed, 0, Space.Self);
         }
-     /*   if (ForwardZ == true)
+        if (ForwardZ == true)
         {
-            transform.Rotate(0, 0, Time.deltaTime * speed, Space.Self);
+            Vector3 vector = new Vector3(0, 0, power);
+            ThisObject.AddTorque(vector);
         }
-        //Reverse Direction
         if (ReverseX == true)
         {
-            transform.Rotate(-Time.deltaTime * speed, 0, 0, Space.Self);
+            Vector3 vector = new Vector3(-power, 0, 0);
+            ThisObject.AddTorque(vector);
         }
         if (ReverseY == true)
         {
-            transform.Rotate(0, -Time.deltaTime * speed, 0, Space.Self);
+            Vector3 vector = new Vector3(0, -power, 0);
+            ThisObject.AddTorque(vector);
         }
         if (ReverseZ == true)
         {
-            transform.Rotate(0, 0, -Time.deltaTime * speed, Space.Self);
-        }*/
-
+            Vector3 vector = new Vector3(0, 0, -power);
+            ThisObject.AddTorque(vector);
+        }
     }
 }

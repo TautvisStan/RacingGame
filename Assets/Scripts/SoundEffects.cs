@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class SoundEffects : MonoBehaviour
 {
-    [SerializeField]
-    private AudioSource[] carSounds;
-    [SerializeField]
-    private AudioSource[] fenceSounds;
-
+    [SerializeField] private AudioSource[] carSounds;
+    [SerializeField] private AudioSource[] fenceSounds;
     public void PlayCarContactSound()
     {
         int playing = Random.Range(0, carSounds.Length);

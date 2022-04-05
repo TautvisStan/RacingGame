@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    public Slider Effects;
-    public Slider Music;
-    public AudioMixer audioMixer;
-    public InputField playerName;
+    [SerializeField] private Slider Effects;
+    [SerializeField] private Slider Music;
+    [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private InputField playerName;
     private void Start()
     {
         Effects.value = PlayerPrefs.GetFloat("EffectsVolume", 0.75f);

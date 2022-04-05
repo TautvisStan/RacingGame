@@ -7,33 +7,37 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    public Text RedWins;
-    public Text BlueWins;
-    public Text redBest;
-    public Text blueBest;
-    public Canvas EndGameCanvas;
-    public void EndRace(int winnerNum, float bestTimeRed, float bestTimeBlue)
+    [SerializeField] private GameObject[] BestTimeText;
+    [SerializeField] private Text WinnerText;
+    [SerializeField] private Canvas EndGameCanvas;
+    public void EndRace(int winnerNum, PlayerInfo[] players, PlayerPanel[] Panels)
     {
+        WinnerText.text = "PLAYER " + winnerNum + " WINS";
         EndGameCanvas.enabled = true;
-        if (winnerNum == 1)
-            BlueWins.enabled = true;
-        if (winnerNum == 2)
-            RedWins.enabled = true;
-        if (bestTimeRed != float.MaxValue)
-            redBest.text = floatTimeToString(bestTimeRed);
-        if (bestTimeBlue != float.MaxValue)
-            blueBest.text = floatTimeToString(bestTimeBlue);
+        WinnerText.color = Panels[winnerNum-1].GetColor();
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].racing)
+            {
+                BestTimeText[i].SetActive(true);
+                if (Panels[i].GetBestTime() != float.MaxValue)
+                {
+                    BestTimeText[i].GetComponent<Text>().text = FloatTimeToString(Panels[i].GetBestTime());
+                }
+                BestTimeText[i].GetComponent<Text>().color = Panels[i].GetColor();
+            }
+        }
     }
-    public string floatTimeToString(float time)
+    public string FloatTimeToString(float time)
     {
         int minutes = (int)time / 60;
         int seconds = (int)time % 60;
         int fraction = (int)(time * 100) % 100;
-
-        return String.Format("Best time {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+        return string.Format("Best time {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
     }
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);
     }
+
 }

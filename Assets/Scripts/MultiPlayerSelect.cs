@@ -5,18 +5,17 @@ using UnityEngine;
 public class MultiPlayerSelect : MonoBehaviour
 {
     private Singleton singleton;
-    public CarSelect[] PlayerPodiums;
-    private List<KeyCode> PlayerConfirmButtons = new List<KeyCode>();
-    private List<KeyCode> PlayerCancelButtons = new List<KeyCode>();
-    private List<KeyCode> PlayerLeftButtons = new List<KeyCode>();
-    private List<KeyCode> PlayerRightButtons = new List<KeyCode>();
-    private List<KeyCode> PlayerUpButtons = new List<KeyCode>();
-    private List<KeyCode> PlayerDownButtons = new List<KeyCode>();
-    private bool[] PlayerNotReady = new bool[4];
-    private bool[] PlayerRacing = new bool[4];
-    private bool ReadyToStart = false;
-
-    public GameObject TrackSelectMenu;
+    [SerializeField] private CarSelect[] PlayerPodiums;
+    private readonly List<KeyCode> PlayerConfirmButtons = new List<KeyCode>();
+    private readonly List<KeyCode> PlayerCancelButtons = new List<KeyCode>();
+    private readonly List<KeyCode> PlayerLeftButtons = new List<KeyCode>();
+    private readonly List<KeyCode> PlayerRightButtons = new List<KeyCode>();
+    private readonly List<KeyCode> PlayerUpButtons = new List<KeyCode>();
+    private readonly List<KeyCode> PlayerDownButtons = new List<KeyCode>();
+    private readonly bool[] PlayerNotReady = new bool[4];
+    private readonly bool[] PlayerRacing = new bool[4];
+   // private bool ReadyToStart = false;
+    [SerializeField] private GameObject TrackSelectMenu;
     public void NextMenu()
     {
         foreach (CarSelect podium in PlayerPodiums)
@@ -25,7 +24,7 @@ public class MultiPlayerSelect : MonoBehaviour
         }
         TrackSelectMenu.SetActive(true);
         TrackSelectMenu.GetComponent<TrackSelect>().DisplayTrack();
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     public void PlayerSelecting(int player, bool state)
     {
@@ -59,7 +58,6 @@ public class MultiPlayerSelect : MonoBehaviour
             // Debug.Log("Visi ready");
             NextMenu();
         }
-
     }
     private void Start()
     {

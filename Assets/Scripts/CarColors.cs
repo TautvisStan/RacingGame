@@ -97,10 +97,9 @@ public class CarColors : MonoBehaviour
         Transform t = car.transform;
         foreach (Transform tr in t)
         {
-            if (tr.tag == "CarColorable")
+            if (tr.CompareTag("CarColorable"))
             {
-                Renderer renderer = null;
-                if(tr.gameObject.TryGetComponent<Renderer>(out renderer))
+                if (tr.gameObject.TryGetComponent<Renderer>(out Renderer renderer))
                 {
                     renderer.material = materials[materialNum];
                 }

@@ -5,46 +5,59 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject Model;
+    [SerializeField] private GameObject Model;
+    private Rigidbody ModelRigidbody;
     [SerializeField] private KeyCode Forwards;
     [SerializeField] private KeyCode Backwards;
     [SerializeField] private KeyCode Left;
     [SerializeField] private KeyCode Right;
     [SerializeField] private KeyCode Reset;
-    [SerializeField] private KeyCode Break;
+    [SerializeField] private KeyCode Brake;
     [SerializeField] private KeyCode Confirm;
-
     private float horizontalInput;
     private float verticalInput;
     private float currentSteerAngle;
-    private float currentbreakForce;
-    private bool isBreaking;
-
+    private float currentBrakeForce;
+    private bool isBraking;
     [SerializeField] private float motorForce;
-    [SerializeField] private float breakForce;
+    [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
-
     [SerializeField] private WheelCollider FLCol;
     [SerializeField] private WheelCollider FRCol;
     [SerializeField] private WheelCollider RLCol;
     [SerializeField] private WheelCollider RRCol;
-
     [SerializeField] private Transform FL;
     [SerializeField] private Transform FR;
     [SerializeField] private Transform RL;
     [SerializeField] private Transform RR;
-
+    private bool respawned = false;
+    private void Start()
+    {
+        ModelRigidbody = Model.GetComponent<Rigidbody>();
+    }
     private void FixedUpdate()
     {
-        GetInput();
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
-
-        if (Input.GetKey(Reset))
+        if (respawned)
         {
-            Model.transform.localRotation =
-           Quaternion.Euler(0, Model.transform.rotation.eulerAngles.y, 0);
+            FLCol.brakeTorque = float.MaxValue;
+            FRCol.brakeTorque = float.MaxValue;
+            RLCol.brakeTorque = float.MaxValue;
+            RRCol.brakeTorque = float.MaxValue;
+            ModelRigidbody.isKinematic = true;
+            respawned = false;
+        }
+        else
+        {
+            ModelRigidbody.isKinematic = false;
+            GetInput();
+            HandleMotor();
+            HandleSteering();
+            UpdateWheels();
+            if (Input.GetKey(Reset))
+            {
+                respawned = true;
+                Model.transform.localRotation = Quaternion.Euler(0, Model.transform.rotation.eulerAngles.y, 0);
+            }
         }
     }
     public void SetControls(Dictionary<string, KeyCode> controls)
@@ -54,10 +67,9 @@ public class PlayerController : MonoBehaviour
         Left = controls["Left"];
         Right = controls["Right"];
         Reset = controls["Reset"];
-        Break = controls["Brake"];
+        Brake = controls["Brake"];
         Confirm = controls["Confirm"];
     }
-
     private void GetInput()
     {
         if (Input.GetKey(Right)) horizontalInput = 1;
@@ -66,37 +78,37 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(Forwards)) verticalInput = 1;
         if (Input.GetKey(Backwards)) verticalInput = -1;
         if (!Input.GetKey(Forwards) && !Input.GetKey(Backwards)) verticalInput = 0;
-        isBreaking = Input.GetKey(Break);
+        isBraking = Input.GetKey(Brake);
     }
-
     private void HandleMotor()
     {
         FLCol.motorTorque = verticalInput * motorForce;
         FRCol.motorTorque = verticalInput * motorForce;
         RLCol.motorTorque = verticalInput * motorForce;
         RRCol.motorTorque = verticalInput * motorForce;
-        if (isBreaking)
-            currentbreakForce = breakForce;
+        if (isBraking)
+        {
+            currentBrakeForce = brakeForce;
+        }
         else
-            currentbreakForce = 0f;
+        {
+            currentBrakeForce = 0f;
+        }
         ApplyBreaking();
     }
-
     private void ApplyBreaking()
     {
-        FRCol.brakeTorque = currentbreakForce;
-        FLCol.brakeTorque = currentbreakForce;
-        RLCol.brakeTorque = currentbreakForce;
-        RRCol.brakeTorque = currentbreakForce;
+        FRCol.brakeTorque = currentBrakeForce;
+        FLCol.brakeTorque = currentBrakeForce;
+        RLCol.brakeTorque = currentBrakeForce;
+        RRCol.brakeTorque = currentBrakeForce;
     }
-
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
         FLCol.steerAngle = currentSteerAngle;
         FRCol.steerAngle = currentSteerAngle;
     }
-
     private void UpdateWheels()
     {
         UpdateSingleWheel(FLCol, FL);
@@ -104,14 +116,10 @@ public class PlayerController : MonoBehaviour
         UpdateSingleWheel(RRCol, RR);
         UpdateSingleWheel(RLCol, RL);
     }
-
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
-        Vector3 pos = wheelTransform.position;
-        Quaternion rot = wheelTransform.rotation;
-        wheelCollider.GetWorldPose(out pos, out rot);
-        rot = rot * Quaternion.Euler(new Vector3(0, 0, 90));
-        wheelTransform.position = pos;
-        wheelTransform.rotation = rot;
+        wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
+        rot *= Quaternion.Euler(new Vector3(0, 0, 90));
+        wheelTransform.SetPositionAndRotation(pos, rot);
     }
 }

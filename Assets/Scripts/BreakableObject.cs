@@ -5,8 +5,8 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour
 {
     private int hits = 0;
-    public int MaxHits = 3;
-    public float SecondsToDestroy = 10;
+    [SerializeField] private int MaxHits = 3;
+    [SerializeField] private float SecondsToDestroy = 10;
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))

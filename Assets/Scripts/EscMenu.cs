@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class EscMenu : MonoBehaviour
 {
-
-    bool open = false;
-    public Canvas menu;
+    private bool open = false;
+    [SerializeField] private Canvas menu;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

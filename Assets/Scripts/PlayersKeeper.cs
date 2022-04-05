@@ -6,6 +6,7 @@ public class PlayerInfo
     public bool racing = false;
     public int CarID;
     public int MaterialID;
+    public GameObject PlayerObject;
 }
 public class PlayersKeeper : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class PlayersKeeper : MonoBehaviour
         {
             Infos[i] = new PlayerInfo();
         }
+    }
+    public PlayerInfo[] ExportPlayers()
+    {
+        return Infos;
     }
     public bool IsPlayerRacing(int PlayerID)
     {

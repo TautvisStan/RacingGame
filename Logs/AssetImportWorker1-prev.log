@@ -15,11 +15,11 @@ C:/Users/AAA/Documents/RacingGame/RacingGame/RacingGame
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-62818
+60156
 Successfully changed project path to: C:/Users/AAA/Documents/RacingGame/RacingGame/RacingGame
 C:/Users/AAA/Documents/RacingGame/RacingGame/RacingGame
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 441.45 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 851.51 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.28f1 (f5400f52e03f)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.28f1/Editor/Data/Resources/UnitySubsystems
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.28f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.28f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.28f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56272
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56324
 Begin MonoManager ReloadAssembly

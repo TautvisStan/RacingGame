@@ -6,19 +6,19 @@ using UnityEngine.SceneManagement;
 public class CarSelect : MonoBehaviour
 {
     private int CarID = 0;
-    public int PlayerNumber;
+    [SerializeField] private int PlayerNumber;
     private Singleton singleton;
     private GameObject PodiumCar;
-    public GameObject CarSpawn;
+    [SerializeField] private GameObject CarSpawn;
     private GameObject[] Cars;
     private bool active = false;
     private bool selected = false;
-    public MultiPlayerSelect multiPlayerSelect;
-    public GameObject PressToJoin;
-    public GameObject Podium;
-    public GameObject Ready;
+    [SerializeField] private MultiPlayerSelect multiPlayerSelect;
+    [SerializeField] private GameObject PressToJoin;
+    [SerializeField] private GameObject Podium;
+    [SerializeField] private GameObject Ready;
     private int materialNum = -1;
-    public CarColors carColors;
+    [SerializeField] private CarColors carColors;
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
@@ -53,7 +53,6 @@ public class CarSelect : MonoBehaviour
                 Ready.SetActive(true);
                 multiPlayerSelect.PlayerSelecting(PlayerNumber, false);
                 multiPlayerSelect.PlayerDone(PlayerNumber, true);
-
             }
         }
     }
@@ -114,10 +113,11 @@ public class CarSelect : MonoBehaviour
     {
         GameObject.Destroy(PodiumCar);
         PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
-        //PodiumCar.transform.SetParent(CarSpawn.transform, true);
+        PodiumCar.transform.SetParent(this.gameObject.transform, true);
+        PodiumCar.transform.position = CarSpawn.transform.position;
         SetLayerRecursively(PodiumCar, "UI");
         PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
-         PodiumCar.transform.localScale = CarSpawn.transform.localScale;
+        PodiumCar.transform.localScale = CarSpawn.transform.localScale;
         PodiumCar.GetComponent<Rigidbody>().mass = 2500;
         if (materialNum == -1)
         {
@@ -128,11 +128,6 @@ public class CarSelect : MonoBehaviour
             carColors.SetColor(PodiumCar, materialNum);
         }
     }
-    public void Play()
-    {
-
-    }
-
     public void Left()
     {
         if (CarID == 0)
@@ -140,7 +135,9 @@ public class CarSelect : MonoBehaviour
             CarID = Cars.Length - 1;
         }
         else
+        {
             CarID--;
+        }
         DisplayCar();
     }
     public void Right()
@@ -150,13 +147,14 @@ public class CarSelect : MonoBehaviour
             CarID = 0;
         }
         else
+        {
             CarID++;
+        }
         DisplayCar();
     }
     public static void SetLayerRecursively(GameObject obj, string layerName)
     {
         obj.layer = LayerMask.NameToLayer(layerName);
-
         foreach (Transform child in obj.transform)
         {
             SetLayerRecursively(child.gameObject, layerName);

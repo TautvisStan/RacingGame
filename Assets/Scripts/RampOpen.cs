@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class RampOpen : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Ramp;
-
-
+    [SerializeField] private GameObject Ramp;
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -16,6 +13,5 @@ public class RampOpen : MonoBehaviour
             animation.Play();
             Destroy(this.gameObject);
         }
-
     }
 }

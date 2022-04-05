@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PowerupController : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject Powerup;
+    [SerializeField] private GameObject Powerup;
     public void ActivatePowerup(GameObject powerupObj)
     {
         powerupObj.SetActive(false);
