@@ -364,7 +364,7 @@ RectTransform:
   m_GameObject: {fileID: 71422683}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45729175, y: 0.57605296, z: 0.57605296}
+  m_LocalScale: {x: 0.38754985, y: 0.6016192, z: 0.6016192}
   m_Children: []
   m_Father: {fileID: 1350219538}
   m_RootOrder: 0
@@ -526,6 +526,7 @@ MonoBehaviour:
   Best: {fileID: 461510356}
   CheckpointText: {fileID: 1296039695}
   LapText: {fileID: 1363502280}
+  PowerupImage: {fileID: 2122883016}
 --- !u!224 &185039887
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1100,7 +1101,7 @@ RectTransform:
   m_GameObject: {fileID: 333574964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45729175, y: 0.57605296, z: 0.57605296}
+  m_LocalScale: {x: 0.38754985, y: 0.6016192, z: 0.6016192}
   m_Children: []
   m_Father: {fileID: 733503200}
   m_RootOrder: 0
@@ -2134,6 +2135,7 @@ MonoBehaviour:
   Best: {fileID: 1954391318}
   CheckpointText: {fileID: 1320948518}
   LapText: {fileID: 2001092611}
+  PowerupImage: {fileID: 333574966}
 --- !u!224 &733503200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2856,7 +2858,7 @@ RectTransform:
   m_GameObject: {fileID: 1037789075}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45729175, y: 0.57605296, z: 0.57605296}
+  m_LocalScale: {x: 0.38754985, y: 0.6016192, z: 0.6016192}
   m_Children: []
   m_Father: {fileID: 1163658766}
   m_RootOrder: 0
@@ -2873,7 +2875,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037789075}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -3073,6 +3075,7 @@ MonoBehaviour:
   Best: {fileID: 1581320137}
   CheckpointText: {fileID: 1972351721}
   LapText: {fileID: 716467280}
+  PowerupImage: {fileID: 1037789077}
 --- !u!1 &1203360929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3516,6 +3519,7 @@ MonoBehaviour:
   Best: {fileID: 1203360932}
   CheckpointText: {fileID: 1619796018}
   LapText: {fileID: 36002440}
+  PowerupImage: {fileID: 71422685}
 --- !u!224 &1350219538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5098,7 +5102,7 @@ RectTransform:
   m_GameObject: {fileID: 2122883014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45729175, y: 0.57605296, z: 0.57605296}
+  m_LocalScale: {x: 0.38754985, y: 0.6016192, z: 0.6016192}
   m_Children: []
   m_Father: {fileID: 185039887}
   m_RootOrder: 0

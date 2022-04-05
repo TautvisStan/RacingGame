@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PowerupController : MonoBehaviour
 {
     [SerializeField] private GameObject Powerup;
-    public void ActivatePowerup(GameObject powerupObj)
+    public PowerupItem[] Items;
+    public void PickupPowerup(GameObject powerupObj, Player player)
     {
         powerupObj.SetActive(false);
         var coord = powerupObj.transform.position;
@@ -13,6 +13,7 @@ public class PowerupController : MonoBehaviour
         powerupObj.GetComponent<ParticleSystem>().Play();
         Destroy(powerupObj);
         CreatePowerup(coord);
+        player.Powerup = Items[0];
     }
     public void CreatePowerup(Vector3 coord)
     {

@@ -12,6 +12,7 @@ public class PlayerPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Best;
     [SerializeField] private TextMeshProUGUI CheckpointText;
     [SerializeField] private TextMeshProUGUI LapText;
+    [SerializeField] private Image PowerupImage;
     private float GuiTime;
     private float BestTime = float.MaxValue;
     private bool started = false;
@@ -24,6 +25,16 @@ public class PlayerPanel : MonoBehaviour
     {
         GetComponent<Image>().color = material.color;
         PanelColor = material.color;
+    }
+    public void SetImage(Sprite image)
+    {
+        PowerupImage.enabled = true;
+        PowerupImage.sprite = image;
+    }
+    public void UnsetImage()
+    {
+        PowerupImage.sprite = null;
+        PowerupImage.enabled = false;
     }
     private void Update()
     {

@@ -16,6 +16,10 @@ public class ModelScript : MonoBehaviour
         {
             ScriptsObject.GetComponent<Player>().RegisterCheckpoint(collision.gameObject);
         }
+        if (collision.CompareTag("Powerup"))
+        {
+            ScriptsObject.GetComponent<Player>().RegisterPowerup(collision.gameObject);
+        }
     }
     void OnCollisionEnter(Collision collision)
     {

@@ -6,17 +6,26 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public PowerupItem Powerup = null;
     private int lapsCompleted = 0;
     private int checkpoint = 0;
     private PlayerPanel Panel;
     private SinglePlayerTimer timerController;
     private MultiPlayerTimer mptimerController;
     private CheckpointController checkpointController;
+    private PowerupController powerupController;
+    private PlayerController playerController;
     private void Awake()
     {
         timerController = FindObjectOfType<SinglePlayerTimer>();
         mptimerController = FindObjectOfType<MultiPlayerTimer>();
         checkpointController = FindObjectOfType<CheckpointController>();
+        powerupController = FindObjectOfType<PowerupController>();
+        playerController = GetComponent<PlayerController>();
+    }
+    public Transform GetPlayerTransform()
+    {
+        return playerController.GetTransform();
     }
     private void StartRacing()
     {
@@ -58,5 +67,22 @@ public class Player : MonoBehaviour
     public void RegisterCheckpoint(GameObject cp)
     {
         checkpointController.AddCheckpoint(cp, this, checkpoint);
+    }
+    public void RegisterPowerup(GameObject powerup)
+    {
+        if (Powerup == null)
+        {
+            powerupController.PickupPowerup(powerup, this);
+            Panel.SetImage(Powerup.PowerupImage);
+        }
+    }
+    public void ActivatePowerup()
+    {
+        if (Powerup != null)
+        {
+            Powerup.Activate(this);
+            Powerup = null;
+            Panel.UnsetImage();
+        }
     }
 }

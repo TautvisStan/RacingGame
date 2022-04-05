@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Player Player;
     [SerializeField] private GameObject Model;
     private Rigidbody ModelRigidbody;
     [SerializeField] private KeyCode Forwards;
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         ModelRigidbody = Model.GetComponent<Rigidbody>();
+        Player = GetComponent<Player>();
+    }
+    public Transform GetTransform()
+    {
+        return Model.transform;
     }
     private void FixedUpdate()
     {
@@ -57,6 +63,10 @@ public class PlayerController : MonoBehaviour
             {
                 respawned = true;
                 Model.transform.localRotation = Quaternion.Euler(0, Model.transform.rotation.eulerAngles.y, 0);
+            }
+            if (Input.GetKey(Confirm))
+            {
+                Player.ActivatePowerup();
             }
         }
     }
