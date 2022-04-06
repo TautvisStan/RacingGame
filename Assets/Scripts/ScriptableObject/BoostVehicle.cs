@@ -5,8 +5,9 @@ using UnityEngine;
 public class BoostVehicle : PowerupItem
 {
     [SerializeField] private float Power;
-    public override void Activate(Player player)
+    public override bool Activate(Player player)
     {
-        player.GetPlayerTransform().GetComponent<Rigidbody>().AddForce(player.GetPlayerTransform().transform.forward * Power);
+        player.GetPlayerTransform().GetComponent<Rigidbody>().velocity = player.GetPlayerTransform().GetComponent<Rigidbody>().velocity.magnitude * Power * player.GetPlayerTransform().transform.forward;
+        return true;
     }
 }

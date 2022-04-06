@@ -6,5 +6,5 @@ using UnityEngine.UI;
 public abstract class PowerupItem :ScriptableObject
 {
     public Sprite PowerupImage;
-    public abstract void Activate(Player player);
+    public abstract bool Activate(Player player);
 }

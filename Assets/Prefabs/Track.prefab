@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Powerup: {fileID: 8861491464005415707, guid: 24ade07e567a8bf409dce2341acc5942, type: 3}
   Items:
-  - {fileID: 11400000, guid: 150e22899fda25c45aad7a8e54ef6caf, type: 2}
+  - {fileID: 11400000, guid: b40e40ffc6dd3b64bb2798e3512588e7, type: 2}
 --- !u!1 &2800778587251966654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1252,7 @@ GameObject:
   - component: {fileID: 2800778587276318270}
   - component: {fileID: 2800778587276318265}
   - component: {fileID: 2800778587276318264}
+  - component: {fileID: 735831540793694008}
   m_Layer: 0
   m_Name: Ramp (1)
   m_TagString: Untagged
@@ -1335,6 +1336,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &735831540793694008
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800778587276318266}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2800778587276536826
 GameObject:
   m_ObjectHideFlags: 0
@@ -6640,7 +6657,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11887,7 +11903,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11946,6 +11961,7 @@ GameObject:
   - component: {fileID: 2800778588154040671}
   - component: {fileID: 2800778588154040670}
   - component: {fileID: 2800778588154040658}
+  - component: {fileID: 7605755691248307831}
   m_Layer: 0
   m_Name: Ramp
   m_TagString: Untagged
@@ -12048,6 +12064,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!54 &7605755691248307831
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800778588154040665}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2800778588160692630
 GameObject:
   m_ObjectHideFlags: 0
@@ -16871,7 +16903,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -26615,17 +26646,17 @@ PrefabInstance:
     - target: {fileID: 8861491464005415696, guid: 24ade07e567a8bf409dce2341acc5942,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8861491464005415696, guid: 24ade07e567a8bf409dce2341acc5942,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8861491464005415696, guid: 24ade07e567a8bf409dce2341acc5942,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8861491464005415696, guid: 24ade07e567a8bf409dce2341acc5942,
         type: 3}

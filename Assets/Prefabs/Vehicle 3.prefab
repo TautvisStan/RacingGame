@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3458624396922596333}
   - component: {fileID: 1511434715028773927}
   - component: {fileID: 2762218703227959034}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 1998884385060792770}
   - component: {fileID: 1101848235017902958}
   - component: {fileID: 3772176202689878197}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 6906041354160013075}
   - component: {fileID: 269975031765963778}
   - component: {fileID: 870274774671754557}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Capsule
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 2980704692233810930}
   - component: {fileID: 3077380608694638181}
   - component: {fileID: 2759081149045112503}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (1)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1258,7 +1258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3770432953199175116}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Colorable
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: 8622132094773770480}
   - component: {fileID: 4159288673237372667}
   - component: {fileID: 2759246431081191299}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube (2)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}

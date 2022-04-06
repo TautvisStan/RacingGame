@@ -10,6 +10,10 @@ public class ModelScript : MonoBehaviour
     {
         soundEffectsController = FindObjectOfType<SoundEffects>();
     }
+    public PlayerController GetPlayerController()
+    {
+        return ScriptsObject.GetComponent<PlayerController>();
+    }
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Checkpoint"))

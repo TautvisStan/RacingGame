@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3348301876549940483}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wheels
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8373419443290513999}
   - component: {fileID: 4605692957308041780}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FRCol
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 3458624396922596333}
   - component: {fileID: 1511434715028773927}
   - component: {fileID: 2762218703227959034}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1102234376167679135}
   - component: {fileID: 5939738595332240463}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RLCol
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5495490371964418757}
   - component: {fileID: 8893106537038800291}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RRCol
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2370337003900178126}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheelTransform
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6697338937448260800}
   - component: {fileID: 3350364132632476256}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FLCol
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -591,7 +591,7 @@ GameObject:
   - component: {fileID: 3394353092067870708}
   - component: {fileID: 1877451169388553233}
   - component: {fileID: 780933057085834554}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RR
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -687,7 +687,7 @@ GameObject:
   - component: {fileID: 1112956275097057509}
   - component: {fileID: 8239546935676814848}
   - component: {fileID: 1394258419333161827}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Top
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 3793313841427239532}
   - component: {fileID: 5058782821297564692}
   - component: {fileID: 4461115129671165945}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FR
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 5207883876390804375}
   - component: {fileID: 7638549568116900065}
   - component: {fileID: 3529540875787538331}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FL
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -974,7 +974,7 @@ GameObject:
   - component: {fileID: 5871880838521724833}
   - component: {fileID: 6908295565690206617}
   - component: {fileID: 7719085760914915526}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RL
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1067,7 +1067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7159131288726556062}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheelColliders
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016377424579425817}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Colorable
   m_TagString: CarColorable
   m_Icon: {fileID: 0}

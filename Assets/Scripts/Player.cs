@@ -80,9 +80,11 @@ public class Player : MonoBehaviour
     {
         if (Powerup != null)
         {
-            Powerup.Activate(this);
-            Powerup = null;
-            Panel.UnsetImage();
+            if (Powerup.Activate(this))
+            {
+                Powerup = null;
+                Panel.UnsetImage();
+            }
         }
     }
 }

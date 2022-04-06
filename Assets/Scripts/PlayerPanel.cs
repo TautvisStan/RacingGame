@@ -17,10 +17,6 @@ public class PlayerPanel : MonoBehaviour
     private float BestTime = float.MaxValue;
     private bool started = false;
     private Color PanelColor;
-    public void Start()
-    {
-        StartTime = Time.time;
-    }
     public void PaintPanel(Material material)
     {
         GetComponent<Image>().color = material.color;
@@ -58,6 +54,7 @@ public class PlayerPanel : MonoBehaviour
     public void StartRacing()
     {
         started = true;
+        StartTime = Time.time;
     }
     public void StopRacing()
     {

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Boost
   m_EditorClassIdentifier: 
   PowerupImage: {fileID: 21300000, guid: 3487babf4310e4b49bff7db4c6965196, type: 3}
-  Power: 1000000
+  Power: 3

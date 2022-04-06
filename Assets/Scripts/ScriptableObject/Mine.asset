@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Mine
   m_EditorClassIdentifier: 
   PowerupImage: {fileID: 21300000, guid: 3487babf4310e4b49bff7db4c6965196, type: 3}
-  Object: {fileID: 8083723980144968115, guid: 01f20b1e030ec69459221397eb1bf5b1, type: 3}
+  Object: {fileID: 7730274218938465354, guid: e79d10f70d1f0954c9c3c465dbac1dbe, type: 3}
   Behind: 1
   Distance: 3
