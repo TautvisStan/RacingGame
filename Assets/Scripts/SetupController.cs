@@ -30,15 +30,14 @@ public class SetupController : MonoBehaviour
     {
         singleton.StartGame();
     }
-    public void SetupGame(int trackID, PlayersKeeper Players)
+    public void SetupGame(int trackID, PlayersKeeper Players, int LapCount)
     {
-
-            MultiPlayerCanvas.SetActive(true);
-            GameObject.Find("Top Times:").SetActive(false);
-            MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayers(Players.ExportPlayers());
+        MultiPlayerCanvas.SetActive(true);
+        GameObject.Find("Top Times:").SetActive(false);
+        MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayers(Players.ExportPlayers());
+        MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetMaxLaps(LapCount);
         List<Dictionary<string, KeyCode>> controls = singleton.PassControlsToSetup();
         Instantiate(Tracks[trackID], new Vector3(0, 0, 0), Tracks[trackID].transform.rotation);
-
         for (int i = 0; i < Players.GetPlayerCount(); i++)
         {
             if (Players.IsPlayerRacing(i))

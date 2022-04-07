@@ -7,6 +7,7 @@ public class Singleton : MonoBehaviour
     public static Singleton i;
     public bool GameReady = false;
     public int TrackID;
+    public int LapsCount;
     public bool CarsSelected = false;
     [SerializeField] private VehiclesKeeper Vehicles;
     [SerializeField] private TracksKeeper Tracks;
@@ -122,7 +123,7 @@ public class Singleton : MonoBehaviour
             GameReady = false;
             CarsSelected = false;
             SetupController setupController = FindObjectOfType<SetupController>();
-            setupController.SetupGame(TrackID, Players);
+            setupController.SetupGame(TrackID, Players, LapsCount);
         }
     }
 }

@@ -16,6 +16,10 @@ public class MultiPlayerTimer : MonoBehaviour
     [SerializeField] private GameOver GameOverUI;
     [SerializeField] private Canvas gameUI;
     [SerializeField] private PlayerPanel[] Panels;
+    public void SetMaxLaps(int LapCount)
+    {
+        maxLaps = LapCount;
+    }
     public void SetPlayers(PlayerInfo[] Players)
     {
         players = Players;
