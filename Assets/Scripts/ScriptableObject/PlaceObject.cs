@@ -9,9 +9,19 @@ public class PlaceObject : PowerupItem
     [SerializeField] private float Distance;
     public override bool Activate(Player player)
     {
+        RaycastHit[] hits;
+        bool blocked = false;
         if (Behind)
         {
-            if (!Physics.Raycast(player.GetPlayerTransform().position, player.GetPlayerTransform().forward * -1 + player.GetPlayerTransform().up, Distance))
+            hits = Physics.RaycastAll(player.GetPlayerTransform().position, player.GetPlayerTransform().forward * -1 + player.GetPlayerTransform().up, Distance);
+            foreach (RaycastHit hit in hits)
+            {
+                if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint"))
+                {
+                    blocked = true;
+                }
+            }
+            if (!blocked)
             {
                 Instantiate(Object, player.GetPlayerTransform().position - player.GetPlayerTransform().forward * Distance + player.GetPlayerTransform().up, player.GetPlayerTransform().rotation);
                 return true;
@@ -20,7 +30,15 @@ public class PlaceObject : PowerupItem
         }
         else
         {
-            if (!Physics.Raycast(player.GetPlayerTransform().position, player.GetPlayerTransform().forward * +1 + player.GetPlayerTransform().up, Distance))
+            hits = Physics.RaycastAll(player.GetPlayerTransform().position, player.GetPlayerTransform().forward * +1 + player.GetPlayerTransform().up, Distance);
+            foreach (RaycastHit hit in hits)
+            {
+                if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint"))
+                {
+                    blocked = true;
+                }
+            }
+            if (!blocked)
             {
                 Instantiate(Object, player.GetPlayerTransform().position + player.GetPlayerTransform().forward * Distance + player.GetPlayerTransform().up, player.GetPlayerTransform().rotation);
                 return true;

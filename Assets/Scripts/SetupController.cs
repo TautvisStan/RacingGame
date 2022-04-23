@@ -13,6 +13,7 @@ public class SetupController : MonoBehaviour
     public GameObject MultiPlayerCanvas;
     public GameObject GameOverUI;
     [SerializeField] private PlayerPanel[] Panels;
+    private CheckpointController checkpointController;
 
 
     private Singleton singleton;
@@ -23,6 +24,7 @@ public class SetupController : MonoBehaviour
         Cars = singleton.PassVehicles();
         Tracks = singleton.PassTracks();
         Materials = singleton.PassMaterials();
+        
     }
 
 
@@ -32,23 +34,35 @@ public class SetupController : MonoBehaviour
     }
     public void SetupGame(int trackID, PlayersKeeper Players, int LapCount)
     {
+
         MultiPlayerCanvas.SetActive(true);
         GameObject.Find("Top Times:").SetActive(false);
         MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayers(Players.ExportPlayers());
         MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetMaxLaps(LapCount);
         List<Dictionary<string, KeyCode>> controls = singleton.PassControlsToSetup();
         Instantiate(Tracks[trackID], new Vector3(0, 0, 0), Tracks[trackID].transform.rotation);
+        checkpointController = FindObjectOfType<CheckpointController>();
         for (int i = 0; i < Players.GetPlayerCount(); i++)
         {
             if (Players.IsPlayerRacing(i))
             {
                 GameObject spawn = GameObject.Find(string.Format("Spawn {0}", i + 1));
                 GameObject car = Instantiate(Cars[Players.ReturnCarID(i)], spawn.transform.position, spawn.transform.rotation);
+                if(Players.IsPlayerAI(i))
+                {
+                    car.GetComponentInChildren<PlayerController>().enabled = false;
+                }
+                else
+                {
+                    car.GetComponentInChildren<PlayerController>().SetControls(controls[i]);
+                    car.GetComponentInChildren<AIController>().enabled = false;
+                }
                 car.name = (i + 1).ToString();
                 SetCarColor(car, Players.ReturnMaterialID(i));
                 Panels[i].gameObject.SetActive(true);
+                Panels[i].SetMaxLapsNumber(LapCount);
+                Panels[i].SetCPNumber(checkpointController.GetCheckpoints());
                 SetPanelColor(Panels[i], Players.ReturnMaterialID(i));
-                car.GetComponentInChildren<PlayerController>().SetControls(controls[i]);
                 car.GetComponentInChildren<Player>().SetCar(Panels[i]);
                 MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayerGameObject(i, car);
             }

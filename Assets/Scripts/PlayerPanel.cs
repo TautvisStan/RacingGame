@@ -16,7 +16,17 @@ public class PlayerPanel : MonoBehaviour
     private float GuiTime;
     private float BestTime = float.MaxValue;
     private bool started = false;
+    private int maxLapsNumber;
+    private int cpNumber;
     private Color PanelColor;
+    public void SetMaxLapsNumber(int laps)
+    {
+        maxLapsNumber = laps;
+    }
+    public void SetCPNumber(int cp)
+    {
+        cpNumber = cp;
+    }
     public void PaintPanel(Material material)
     {
         GetComponent<Image>().color = material.color;
@@ -62,11 +72,11 @@ public class PlayerPanel : MonoBehaviour
     }
     public void UpdateCheckpointText(int cp)
     {
-        CheckpointText.text = $"C {cp}";
+        CheckpointText.text = $"C {cp}/{cpNumber}";
     }
     public void UpdateLapText(int lap)
     {
-        LapText.text = $"L {lap}";
+        LapText.text = $"L {lap}/{maxLapsNumber}";
     }
     public void LapTime()
     {

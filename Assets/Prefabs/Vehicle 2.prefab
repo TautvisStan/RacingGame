@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 5963657721859520288}
   - component: {fileID: 4893155546370027267}
   - component: {fileID: 1679381393935708932}
-  - component: {fileID: 2284367151378264336}
-  m_Layer: 2
+  - component: {fileID: 1774139699030154388}
+  m_Layer: 0
   m_Name: Cube
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -114,8 +114,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2284367151378264336
-BoxCollider:
+--- !u!64 &1774139699030154388
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,9 +124,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &300805589764357068
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,8 +200,8 @@ GameObject:
   - component: {fileID: 7160376822738613441}
   - component: {fileID: 3458624396922596333}
   - component: {fileID: 1511434715028773927}
-  - component: {fileID: 2762218703227959034}
-  m_Layer: 2
+  - component: {fileID: 4905456490349402683}
+  m_Layer: 0
   m_Name: Body
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -270,8 +271,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2762218703227959034
-BoxCollider:
+--- !u!64 &4905456490349402683
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -280,9 +281,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &980622665813508068
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +452,8 @@ GameObject:
   - component: {fileID: 6954948392667070226}
   - component: {fileID: 8045858605910907725}
   - component: {fileID: 3535471331185909230}
-  - component: {fileID: 172798971514308621}
-  m_Layer: 2
+  - component: {fileID: 5058223955242642361}
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -521,8 +523,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &172798971514308621
-BoxCollider:
+--- !u!64 &5058223955242642361
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -531,9 +533,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2403931339951602073
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,8 +975,8 @@ GameObject:
   - component: {fileID: 8476421562754954826}
   - component: {fileID: 6324515813934192148}
   - component: {fileID: 2793011205468138576}
-  - component: {fileID: 5560461704143443506}
-  m_Layer: 2
+  - component: {fileID: 7448289586414504603}
+  m_Layer: 0
   m_Name: Cube (3)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1043,8 +1046,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5560461704143443506
-BoxCollider:
+--- !u!64 &7448289586414504603
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1053,9 +1056,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4375286039996183375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5748063300494896427}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Colorable
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1295,8 +1299,8 @@ GameObject:
   - component: {fileID: 7182265638576767691}
   - component: {fileID: 1150493853205466686}
   - component: {fileID: 6591649136629737161}
-  - component: {fileID: 905353419819089265}
-  m_Layer: 2
+  - component: {fileID: 6805260647109339942}
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1366,8 +1370,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &905353419819089265
-BoxCollider:
+--- !u!64 &6805260647109339942
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1376,9 +1380,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &7449326286495409840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,8 +1429,8 @@ GameObject:
   - component: {fileID: 479382462232470233}
   - component: {fileID: 3329416419080593680}
   - component: {fileID: 7377424676835425111}
-  - component: {fileID: 1077685709423602654}
-  m_Layer: 2
+  - component: {fileID: 5906519224559011442}
+  m_Layer: 0
   m_Name: Cube (4)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1495,8 +1500,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1077685709423602654
-BoxCollider:
+--- !u!64 &5906519224559011442
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1505,9 +1510,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9073813021564527022
 GameObject:
   m_ObjectHideFlags: 0

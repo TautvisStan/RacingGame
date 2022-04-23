@@ -17,6 +17,18 @@ public class CarColors : MonoBehaviour
             inUse[i] = false;
         }
     }
+    public int GetSpareMaterialsNum()
+    {
+        int num = 0;
+        foreach(bool used in inUse)
+        {
+            if(!used)
+            {
+                num++;
+            }
+        }
+        return num;
+    }
     public int ClearColor(int materialNum)
     {
         inUse[materialNum] = false;

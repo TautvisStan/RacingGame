@@ -13,6 +13,7 @@ public class TrackSelect : MonoBehaviour
     [SerializeField] private GameObject TrackSpawn;
     private GameObject[] Tracks;
     [SerializeField] private TMP_InputField LapsCount;
+    [SerializeField] private GameObject ErrorText;
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
@@ -43,6 +44,10 @@ public class TrackSelect : MonoBehaviour
             singleton.LapsCount = int.Parse(LapsCount.text);
             singleton.GameReady = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        }
+        else
+        {
+            ErrorText.SetActive(true);
         }
     }
     public void Left()

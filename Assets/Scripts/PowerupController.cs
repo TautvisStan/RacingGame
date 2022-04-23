@@ -13,7 +13,8 @@ public class PowerupController : MonoBehaviour
         powerupObj.GetComponent<ParticleSystem>().Play();
         Destroy(powerupObj);
         CreatePowerup(coord);
-        player.Powerup = Items[0];
+        int randomItem = Random.Range(0, Items.Length);
+        player.Powerup = Items[randomItem];
     }
     public void CreatePowerup(Vector3 coord)
     {

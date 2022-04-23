@@ -14,9 +14,9 @@ public class Singleton : MonoBehaviour
     [SerializeField] private MaterialsKeeper Materials;
     [SerializeField] private PlayersKeeper Players;
     List<Dictionary<string, KeyCode>> controlsList = new List<Dictionary<string, KeyCode>>();
-    public void SetPlayer(int PlayerID, int CarID, int MaterialID)
+    public void SetPlayer(int PlayerID, int CarID, int MaterialID, bool AI)
     {
-        Players.SetPlayerInfo(PlayerID, CarID, MaterialID);
+        Players.SetPlayerInfo(PlayerID, CarID, MaterialID, AI);
     }
     public void UnSetPlayer(int PlayerID)
     {

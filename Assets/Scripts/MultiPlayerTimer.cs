@@ -35,7 +35,14 @@ public class MultiPlayerTimer : MonoBehaviour
         {
             if(player.racing)
             {
-                player.PlayerObject.GetComponentInChildren<PlayerController>().enabled = false;
+                if(player.AIRacer)
+                {
+                    player.PlayerObject.GetComponentInChildren<AIController>().enabled = false;
+                }
+                else
+                {
+                    player.PlayerObject.GetComponentInChildren<PlayerController>().enabled = false;
+                }
             }
         }
     }
@@ -74,7 +81,14 @@ public class MultiPlayerTimer : MonoBehaviour
         {
             if (player.racing)
             {
-                player.PlayerObject.GetComponentInChildren<PlayerController>().enabled = true;
+                if (player.AIRacer)
+                {
+                    player.PlayerObject.GetComponentInChildren<AIController>().enabled = true;
+                }
+                else
+                {
+                    player.PlayerObject.GetComponentInChildren<PlayerController>().enabled = true;
+                }
                 player.PlayerObject.GetComponentInChildren<Player>().ActivatePanel();
             }
         }

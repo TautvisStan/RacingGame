@@ -6,9 +6,11 @@ public class ModelScript : MonoBehaviour
 {
     [SerializeField] private GameObject ScriptsObject;
     private SoundEffects soundEffectsController;
+    [SerializeField] private Vector3 CenterOfMass;
     private void Start()
     {
         soundEffectsController = FindObjectOfType<SoundEffects>();
+        GetComponent<Rigidbody>().centerOfMass = CenterOfMass;
     }
     public PlayerController GetPlayerController()
     {

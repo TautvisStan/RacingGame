@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf13c51f470e7e6438b4ca3e319e1f34, type: 3}
   m_Name: Boost
   m_EditorClassIdentifier: 
-  PowerupImage: {fileID: 21300000, guid: 3487babf4310e4b49bff7db4c6965196, type: 3}
+  PowerupImage: {fileID: 21300000, guid: a904ca0f605739d46adc409e71be49a8, type: 3}
   Power: 3

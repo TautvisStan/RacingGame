@@ -11,6 +11,7 @@ TagManager:
   - CarModel
   - CarScript
   - CarColorable
+  - Terrain
   layers:
   - Default
   - TransparentFX

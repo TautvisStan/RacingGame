@@ -13,6 +13,8 @@ public class CarSelect : MonoBehaviour
     private GameObject[] Cars;
     private bool active = false;
     private bool selected = false;
+    private bool AIPlayerLock = false;
+    private bool AIPlayer = false;
     [SerializeField] private MultiPlayerSelect multiPlayerSelect;
     [SerializeField] private GameObject PressToJoin;
     [SerializeField] private GameObject Podium;
@@ -31,28 +33,45 @@ public class CarSelect : MonoBehaviour
     {
         Destroy(PodiumCar);
     }
+    public void AddAI()
+    {
+        AIPlayer = true;
+        ClickedConfirm();
+        for (int i = 0; i < Random.Range(0, Cars.Length); i++)
+        {
+            ClickedRight();
+        }
+        for (int i = 0; i < Random.Range(0, carColors.GetSpareMaterialsNum()); i++)
+        {
+            ClickedDown();
+        }
+        ClickedConfirm();
+        AIPlayerLock = true;
+    }
 
     public void ClickedConfirm()
     {
-        if (!active && !selected)
+        if (!AIPlayerLock)
         {
-            PressToJoin.SetActive(true);
-            active = true;
-            multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
-            PressToJoin.SetActive(false);
-            Podium.SetActive(true);
-            DisplayCar();
-        }
-        else
-        {
-            if (!selected)
+            if (!active && !selected)
             {
-                singleton.SetPlayer(PlayerNumber, CarID, materialNum);
-                selected = true;
-                active = false;
-                Ready.SetActive(true);
-                multiPlayerSelect.PlayerSelecting(PlayerNumber, false);
-                multiPlayerSelect.PlayerDone(PlayerNumber, true);
+                active = true;
+                multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
+                PressToJoin.SetActive(false);
+                Podium.SetActive(true);
+                DisplayCar();
+            }
+            else
+            {
+                if (!selected)
+                {
+                    singleton.SetPlayer(PlayerNumber, CarID, materialNum, AIPlayer);
+                    selected = true;
+                    active = false;
+                    Ready.SetActive(true);
+                    multiPlayerSelect.PlayerSelecting(PlayerNumber, false);
+                    multiPlayerSelect.PlayerDone(PlayerNumber, true);
+                }
             }
         }
     }

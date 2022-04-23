@@ -104,8 +104,8 @@ GameObject:
   - component: {fileID: 7160376822738613441}
   - component: {fileID: 3458624396922596333}
   - component: {fileID: 1511434715028773927}
-  - component: {fileID: 2762218703227959034}
-  m_Layer: 2
+  - component: {fileID: 711650009572553229}
+  m_Layer: 0
   m_Name: Body
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -175,8 +175,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2762218703227959034
-BoxCollider:
+--- !u!64 &711650009572553229
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -185,9 +185,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &980622665813508068
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,8 +261,8 @@ GameObject:
   - component: {fileID: 3790243795216839810}
   - component: {fileID: 1998884385060792770}
   - component: {fileID: 1101848235017902958}
-  - component: {fileID: 3772176202689878197}
-  m_Layer: 2
+  - component: {fileID: 4172393003711755895}
+  m_Layer: 0
   m_Name: Cube
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -331,8 +332,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3772176202689878197
-BoxCollider:
+--- !u!64 &4172393003711755895
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -341,9 +342,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1885334720148520526
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,8 +418,8 @@ GameObject:
   - component: {fileID: 180969352518413421}
   - component: {fileID: 6906041354160013075}
   - component: {fileID: 269975031765963778}
-  - component: {fileID: 870274774671754557}
-  m_Layer: 2
+  - component: {fileID: 6237239290991193749}
+  m_Layer: 0
   m_Name: Capsule
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -487,8 +489,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &870274774671754557
-CapsuleCollider:
+--- !u!64 &6237239290991193749
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -497,10 +499,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2110922584517656342
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,8 +548,8 @@ GameObject:
   - component: {fileID: 2019829195883860273}
   - component: {fileID: 2980704692233810930}
   - component: {fileID: 3077380608694638181}
-  - component: {fileID: 2759081149045112503}
-  m_Layer: 2
+  - component: {fileID: 3077309489605016108}
+  m_Layer: 0
   m_Name: Cube (1)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -617,8 +619,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2759081149045112503
-BoxCollider:
+--- !u!64 &3077309489605016108
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -627,9 +629,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2813240338385470344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3770432953199175116}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Colorable
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1329,8 +1332,8 @@ GameObject:
   - component: {fileID: 8561497757538980725}
   - component: {fileID: 8622132094773770480}
   - component: {fileID: 4159288673237372667}
-  - component: {fileID: 2759246431081191299}
-  m_Layer: 2
+  - component: {fileID: 3185983867562957645}
+  m_Layer: 0
   m_Name: Cube (2)
   m_TagString: CarColorable
   m_Icon: {fileID: 0}
@@ -1400,8 +1403,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2759246431081191299
-BoxCollider:
+--- !u!64 &3185983867562957645
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1410,9 +1413,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9073813021564527022
 GameObject:
   m_ObjectHideFlags: 0

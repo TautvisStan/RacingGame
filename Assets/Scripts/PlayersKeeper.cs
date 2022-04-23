@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerInfo
 {
     public bool racing = false;
+    public bool AIRacer = false;
     public int CarID;
     public int MaterialID;
     public GameObject PlayerObject;
@@ -27,6 +28,10 @@ public class PlayersKeeper : MonoBehaviour
     {
         return Infos[PlayerID].racing;
     }
+    public bool IsPlayerAI(int PlayerID)
+    {
+        return Infos[PlayerID].AIRacer;
+    }
     public int ReturnCarID(int PlayerID)
     {
         return Infos[PlayerID].CarID;
@@ -35,11 +40,12 @@ public class PlayersKeeper : MonoBehaviour
     {
         return Infos[PlayerID].MaterialID;
     }
-    public void SetPlayerInfo(int PlayerID, int CarID, int MaterialID)
+    public void SetPlayerInfo(int PlayerID, int CarID, int MaterialID, bool AI)
     {
         Infos[PlayerID].racing = true;
         Infos[PlayerID].CarID = CarID;
         Infos[PlayerID].MaterialID = MaterialID;
+        Infos[PlayerID].AIRacer = AI;
     }
     public void UnSetPlayerInfo(int PlayerID)
     {
