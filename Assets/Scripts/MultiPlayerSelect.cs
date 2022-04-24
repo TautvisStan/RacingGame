@@ -14,7 +14,8 @@ public class MultiPlayerSelect : MonoBehaviour
     private readonly List<KeyCode> PlayerDownButtons = new List<KeyCode>();
     private readonly bool[] PlayerNotReady = new bool[4];
     private readonly bool[] PlayerRacing = new bool[4];
-   // private bool ReadyToStart = false;
+    [SerializeField] private GameObject Controls;
+    [SerializeField] private GameObject NextWindowButton;
     [SerializeField] private GameObject TrackSelectMenu;
     public void NextMenu()
     {
@@ -29,6 +30,8 @@ public class MultiPlayerSelect : MonoBehaviour
     public void PlayerSelecting(int player, bool state)
     {
         PlayerNotReady[player] = state;
+        Controls.SetActive(true);
+        NextWindowButton.SetActive(false);
     }
     public void PlayerDone(int player, bool state)
     {
@@ -55,8 +58,13 @@ public class MultiPlayerSelect : MonoBehaviour
         }
         if(allDone && atLeastOne)
         {
-            // Debug.Log("Visi ready");
-            NextMenu();
+            Controls.SetActive(false);
+            NextWindowButton.SetActive(true);
+        }
+        else
+        {
+            Controls.SetActive(true);
+            NextWindowButton.SetActive(false);
         }
     }
     private void Start()

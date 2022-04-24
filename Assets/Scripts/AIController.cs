@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
-    [SerializeField] private Transform path;
+    private Rigidbody ModelRigidbody;
+    [SerializeField] private GameObject path;
     [SerializeField] private float maxSteerAngle;
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
@@ -20,33 +21,55 @@ public class AIController : MonoBehaviour
     private float currentSteerAngle;
     private float currentBrakeForce;
     private bool isBraking = false;
-    private List<Transform> nodes;
+    private List<GameObject> nodes;
     private int current;
     [SerializeField] private float SensorLength;
     [SerializeField] private Vector3 FrontSPos = new Vector3(0, 0.2f, 0.5f);
     [SerializeField] private float SideSPos;
     [SerializeField] private float SAngle;
     private bool isAvoiding = false;
+    private bool respawned = false;
     private void Start()
     {
-        path = FindObjectOfType<AIPath>().transform;
+        ModelRigidbody = Model.GetComponent<Rigidbody>();
+        path = FindObjectOfType<AIPath>().gameObject;
         Transform[] pathTransforms = path.GetComponentsInChildren<Transform>();
-        nodes = new List<Transform>();
+        nodes = new List<GameObject>();
         foreach (Transform node in pathTransforms)
         {
             if (node != path.transform)
             {
-                nodes.Add(node);
+                nodes.Add(node.gameObject);
             }
         }
     }
     private void FixedUpdate()
     {
-        HandleSteering();
-        HandleMotor();
-        CheckDistance();        
-        HandleSensors();
-        UpdateWheels();
+        if(respawned)
+        {
+            FLCol.brakeTorque = float.MaxValue;
+            FRCol.brakeTorque = float.MaxValue;
+            RLCol.brakeTorque = float.MaxValue;
+            RRCol.brakeTorque = float.MaxValue;
+            ModelRigidbody.isKinematic = true;
+            respawned = false;
+        }
+        else
+        {
+            HandleSteering();
+            HandleMotor();
+            CheckDistance();
+            HandleSensors();
+            UpdateWheels();
+            ModelRigidbody.isKinematic = false;
+            Vector3 rotation = Model.transform.rotation.eulerAngles;
+            if ((rotation.x >= 90 && rotation.x <= 270) || (rotation.z >= 90 && rotation.z <= 270))
+            {
+                respawned = true;
+                Model.transform.localRotation = Quaternion.Euler(0, Model.transform.rotation.eulerAngles.y, 0);
+            }
+        }
+
     }
     private void HandleSensors()
     {
@@ -54,28 +77,29 @@ public class AIController : MonoBehaviour
         float avoidPower = 0;
         Vector3 SensorPos = Model.transform.position + Model.transform.forward * FrontSPos.z + Model.transform.up * FrontSPos.y;
         isAvoiding = false;
-
-
+        int activeSensors = 0;
         SensorPos += Model.transform.right * SideSPos;
         raycasts = Physics.RaycastAll(SensorPos, Model.transform.forward, SensorLength);
         foreach (RaycastHit hit in raycasts)
         {
-            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
+            if (!hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(SensorPos, hit.point);
                 isAvoiding = true;
                 avoidPower += -1f;
+                activeSensors++;
                 break;
             }
         }
         raycasts = Physics.RaycastAll(SensorPos, Quaternion.AngleAxis(SAngle, Model.transform.up) * Model.transform.forward, SensorLength);
         foreach (RaycastHit hit in raycasts)
         {
-            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
+            if (!hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(SensorPos, hit.point);
                 isAvoiding = true;
                 avoidPower += -0.5f;
+                activeSensors++;
                 break;
             }
         }
@@ -83,22 +107,24 @@ public class AIController : MonoBehaviour
         raycasts = Physics.RaycastAll(SensorPos, Model.transform.forward, SensorLength);
         foreach (RaycastHit hit in raycasts)
         {
-            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
+            if (!hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(SensorPos, hit.point);
                 isAvoiding = true;
                 avoidPower += 1f;
+                activeSensors++;
                 break;
             }
         }
         raycasts = Physics.RaycastAll(SensorPos, Quaternion.AngleAxis(-SAngle, Model.transform.up) * Model.transform.forward, SensorLength);
         foreach (RaycastHit hit in raycasts)
         {
-            if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
+            if (!hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
             {
                 Debug.DrawLine(SensorPos, hit.point);
                 isAvoiding = true;
                 avoidPower += 0.5f;
+                activeSensors++;
                 break;
             }
         }
@@ -108,9 +134,10 @@ public class AIController : MonoBehaviour
             raycasts = Physics.RaycastAll(SensorPos, Model.transform.forward, SensorLength);
             foreach (RaycastHit hit in raycasts)
             {
-                if (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("CarColorable") && !hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
+                if (!hit.collider.CompareTag("Checkpoint") && !hit.collider.CompareTag("Terrain"))
                 {
                     Debug.DrawLine(SensorPos, hit.point);
+                    activeSensors++;
                     if (hit.normal.x < 0)
                     {
                         avoidPower = -1f;
@@ -125,6 +152,11 @@ public class AIController : MonoBehaviour
         }
         if (isAvoiding)
         {
+            if(activeSensors == 5)
+            {
+                avoidPower *= -1;
+                ApplyTorques(-1);
+            }
             if(avoidPower > 1)
             {
                 avoidPower = 1;
@@ -140,7 +172,7 @@ public class AIController : MonoBehaviour
     private void HandleSteering()
     {
         if (isAvoiding) return;
-        Vector3 relativeVector = transform.InverseTransformPoint(nodes[current].position);
+        Vector3 relativeVector = transform.InverseTransformPoint(nodes[current].transform.position);
         currentSteerAngle = maxSteerAngle * (relativeVector.x / relativeVector.magnitude);
         FLCol.steerAngle = currentSteerAngle;
         FRCol.steerAngle = currentSteerAngle;
@@ -172,7 +204,7 @@ public class AIController : MonoBehaviour
     }
     private void CheckDistance()
     {
-        if (Vector3.Distance(Model.transform.position, nodes[current].position) < 6f)
+        if (Vector3.Distance(Model.transform.position, nodes[current].transform.position) < 3f)
         {
             if(current == nodes.Count - 1)
             {
@@ -182,7 +214,7 @@ public class AIController : MonoBehaviour
             {
                 current++;
             }
-            Debug.Log(current);
+            Debug.Log(nodes[current+1]);
         }
     }
     private void UpdateWheels()

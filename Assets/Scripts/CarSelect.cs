@@ -19,6 +19,9 @@ public class CarSelect : MonoBehaviour
     [SerializeField] private GameObject PressToJoin;
     [SerializeField] private GameObject Podium;
     [SerializeField] private GameObject Ready;
+    [SerializeField] private GameObject AIReady;
+    [SerializeField] private GameObject AIJoinButton;
+    [SerializeField] private GameObject AILeaveButton;
     private int materialNum = -1;
     [SerializeField] private CarColors carColors;
     public void Awake()
@@ -41,12 +44,24 @@ public class CarSelect : MonoBehaviour
         {
             ClickedRight();
         }
-        for (int i = 0; i < Random.Range(0, carColors.GetSpareMaterialsNum()); i++)
+        for (int i = 0; i < Random.Range(0, carColors.GetSpareMaterialsNum() + 1); i++)
         {
             ClickedDown();
         }
         ClickedConfirm();
+        Ready.SetActive(false);
+        AIReady.SetActive(true);
+        AILeaveButton.SetActive(true);
         AIPlayerLock = true;
+    }
+    public void RemoveAI()
+    {
+        AIPlayerLock = false;
+        AIReady.SetActive(false);
+        AILeaveButton.SetActive(false);
+        ClickedCancel();
+        ClickedCancel();
+        AIPlayer = false;
     }
 
     public void ClickedConfirm()
@@ -55,6 +70,7 @@ public class CarSelect : MonoBehaviour
         {
             if (!active && !selected)
             {
+                AIJoinButton.SetActive(false);
                 active = true;
                 multiPlayerSelect.PlayerSelecting(PlayerNumber, true);
                 PressToJoin.SetActive(false);
@@ -86,6 +102,7 @@ public class CarSelect : MonoBehaviour
             Destroy(PodiumCar);
             multiPlayerSelect.CheckIfReady();
             materialNum = carColors.ClearColor(materialNum);
+            AIJoinButton.SetActive(true);
         }
         else
         {

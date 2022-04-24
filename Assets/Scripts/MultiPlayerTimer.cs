@@ -102,8 +102,15 @@ public class MultiPlayerTimer : MonoBehaviour
             {
                 if (player.racing)
                 {
+                    if (player.AIRacer)
+                    {
+                        player.PlayerObject.GetComponentInChildren<AIController>().enabled = false;
+                    }
+                    else
+                    {
+                        player.PlayerObject.GetComponentInChildren<PlayerController>().enabled = false;
+                    }
                     player.PlayerObject.GetComponentInChildren<Player>().DeactivatePanel();
-                    player.PlayerObject.GetComponentInChildren<PlayerController>().enabled = false;
                     player.PlayerObject.GetComponentInChildren<Player>().enabled = false;
                     player.PlayerObject.GetComponentInChildren<Rigidbody>().isKinematic = true;
                     player.PlayerObject.GetComponentInChildren<VelocityAudio>().stopEngineSound();

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3314501583687968788}
   - component: {fileID: 4261062144234176097}
   - component: {fileID: 1271830779611368185}
+  - component: {fileID: 8439689243902144501}
   m_Layer: 0
   m_Name: VehicleScriptTemplate
   m_TagString: CarScript
@@ -44,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee56b4a85b51b0429b17a58f0dc86f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Powerup: {fileID: 0}
 --- !u!114 &1271830779611368185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1856dec8475fef94697b7d7855ac6968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   Model: {fileID: 0}
   Forwards: 273
   Backwards: 274
@@ -75,3 +78,32 @@ MonoBehaviour:
   FR: {fileID: 0}
   RL: {fileID: 0}
   RR: {fileID: 0}
+--- !u!114 &8439689243902144501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933127717635315814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df06448b39882034f8f5cdd91233dd59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 0}
+  maxSteerAngle: 45
+  motorForce: 1000
+  brakeForce: 3000
+  FLCol: {fileID: 0}
+  FRCol: {fileID: 0}
+  RLCol: {fileID: 0}
+  RRCol: {fileID: 0}
+  FL: {fileID: 0}
+  FR: {fileID: 0}
+  RL: {fileID: 0}
+  RR: {fileID: 0}
+  Model: {fileID: 0}
+  SensorLength: 0
+  FrontSPos: {x: 0, y: 0.2, z: 0.5}
+  SideSPos: 0
+  SAngle: 0
