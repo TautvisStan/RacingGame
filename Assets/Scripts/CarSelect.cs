@@ -148,9 +148,7 @@ public class CarSelect : MonoBehaviour
     public void DisplayCar()
     {
         GameObject.Destroy(PodiumCar);
-        PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
-        PodiumCar.transform.SetParent(this.gameObject.transform, true);
-        PodiumCar.transform.position = CarSpawn.transform.position;
+        PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation, this.transform);
         SetLayerRecursively(PodiumCar, "UI");
         PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
         PodiumCar.transform.localScale = CarSpawn.transform.localScale;

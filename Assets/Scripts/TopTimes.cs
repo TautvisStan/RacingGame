@@ -7,8 +7,15 @@ using UnityEngine.UI;
 
 public class TopTimes : MonoBehaviour
 {
+    public class PlayerLapTime
+    {
+        public string Name = "None";
+        public int TrackID;
+        public float Time = float.MaxValue;
+    }
     public Text[] NamesText;
     public Text[] TimesText;
+    private int TrackID;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -16,56 +23,69 @@ public class TopTimes : MonoBehaviour
             UpdateTopTimes();
         }
     }
+    public void SetTrackID(int id)
+    {
+        TrackID = id;
+    }
+    public void SaveTime(float time)
+    {
+        PlayerLapTime LapTime = new PlayerLapTime();
+        LapTime.Name = PlayerPrefs.GetString("PlayerName", "Player");
+        LapTime.TrackID = TrackID;
+        LapTime.Time = time;
+        string json = JsonUtility.ToJson(LapTime) + "/n";
+        File.AppendAllText(Application.dataPath + "/TopTimes.txt", json);
+    }
     public void UpdateTopTimes()
     {
-        StreamReader reader = new StreamReader("TopTimes.txt");
-        
-        float[] times = new float[3];
-        for (int i = 0; i < 3; i++)
-            times[i] = float.MaxValue;
-        string[] names = new string[3];
-        for (int i = 0; i < 3; i++)
-            names[i] = "None";
-        while (!reader.EndOfStream)
+        PlayerLapTime[] times = new PlayerLapTime[3];
+        for(int i = 0; i < 3; i++)
         {
-            string line = reader.ReadLine();
-            string[] split = line.Split(' ');
-
-           float newTime = float.Parse(split[1]);
-            for (int j = 0; j < 3; j++)
+            times[i] = new PlayerLapTime();
+        }
+        if (File.Exists(Application.dataPath + "/TopTimes.txt"))
+        {
+            string[] jsonLines = File.ReadAllLines(Application.dataPath + "/TopTimes.txt");
+            foreach(string json in jsonLines)
             {
-                if (newTime < times[j])
+                PlayerLapTime newTime = new PlayerLapTime();
+                JsonUtility.FromJsonOverwrite(json, newTime);
+                if(newTime.TrackID == TrackID)
                 {
-                    
-                    for (int k = 2; k > j; k--)
+                    for (int i = 0; i < 3; i++)
                     {
-                        times[k] = times[k-1];
-                        names[k] = names[k-1];
+                        if (newTime.Time < times[i].Time)
+                        {
+
+                            for (int j = 2; j > i; j--)
+                            {
+                                times[j] = times[j - 1];
+                            }
+                            times[i] = newTime;
+                            break;
+                        }
                     }
-                    times[j] = newTime;
-                    names[j] = split[0];
-                    break;
                 }
             }
-
         }
-       for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if (times[i] != float.MaxValue)
-            {
-                NamesText[i].text = names[i];
-                TimesText[i].text = floatTimeToString(times[i]);
-            }
+            NamesText[i].text = times[i].Name;
+            TimesText[i].text = floatTimeToString(times[i].Time);
         }
-        reader.Close();
-
     }
     public string floatTimeToString(float time)
     {
-        int minutes = (int)time / 60;
-        int seconds = (int)time % 60;
-        int fraction = (int)(time * 100) % 100;
-
-        return String.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+        if(time == float.MaxValue)
+        {
+            return "--:--:--";
+        }
+        else
+        {
+            int minutes = (int)time / 60;
+            int seconds = (int)time % 60;
+            int fraction = (int)(time * 100) % 100;
+            return String.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
+        }
     }
 }

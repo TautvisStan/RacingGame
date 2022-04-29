@@ -7,7 +7,7 @@ public class CarColors : MonoBehaviour
     private Singleton singleton;
     private Material[] materials;
     private bool[] inUse;
-    void Start()
+    void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
         materials = singleton.PassMaterials();

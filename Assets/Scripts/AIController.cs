@@ -69,7 +69,6 @@ public class AIController : MonoBehaviour
                 Model.transform.localRotation = Quaternion.Euler(0, Model.transform.rotation.eulerAngles.y, 0);
             }
         }
-
     }
     private void HandleSensors()
     {
@@ -214,7 +213,6 @@ public class AIController : MonoBehaviour
             {
                 current++;
             }
-            Debug.Log(nodes[current+1]);
         }
     }
     private void UpdateWheels()

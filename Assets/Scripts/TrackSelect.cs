@@ -7,6 +7,7 @@ using TMPro;
 
 public class TrackSelect : MonoBehaviour
 {
+    [SerializeField] private bool soloRace;
     private int TrackID = 0;
     private Singleton singleton;
     private GameObject PodiumTrack;
@@ -28,22 +29,19 @@ public class TrackSelect : MonoBehaviour
     }
     public void DisplayTrack()
     {
-
         Destroy(PodiumTrack);
-        PodiumTrack = Instantiate(Tracks[TrackID], TrackSpawn.transform.position, TrackSpawn.transform.rotation);
-        PodiumTrack.transform.SetParent(this.gameObject.transform, true);
+        PodiumTrack = Instantiate(Tracks[TrackID], TrackSpawn.transform.position, TrackSpawn.transform.rotation, this.transform);
         PodiumTrack.transform.localScale = TrackSpawn.transform.localScale;
-        PodiumTrack.transform.position = TrackSpawn.transform.position;
         SetLayerRecursively(PodiumTrack, "UI");
     }
     public void Play()
     {
-        if (LapsCount.text.Length > 0)
+        if (LapsCount.text.Length > 0 || soloRace)
         {
             singleton.TrackID = TrackID;
             singleton.LapsCount = int.Parse(LapsCount.text);
             singleton.GameReady = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
         else
         {
@@ -57,7 +55,9 @@ public class TrackSelect : MonoBehaviour
             TrackID = Tracks.Length - 1;
         }
         else
+        {
             TrackID--;
+        }
         DisplayTrack();
     }
     public void Right()
@@ -67,7 +67,9 @@ public class TrackSelect : MonoBehaviour
             TrackID = 0;
         }
         else
+        {
             TrackID++;
+        }
         DisplayTrack();
     }
     public static void SetLayerRecursively(GameObject obj, string layerName)

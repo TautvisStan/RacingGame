@@ -9,24 +9,18 @@ public class SetupController : MonoBehaviour
     private GameObject[] Cars;
     private Material[] Materials;
     public GameObject EscMenu;
-    public GameObject SinglePlayerCanvas;
     public GameObject MultiPlayerCanvas;
     public GameObject GameOverUI;
     [SerializeField] private PlayerPanel[] Panels;
     private CheckpointController checkpointController;
-
-
     private Singleton singleton;
-    // Start is called before the first frame update
     private void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
         Cars = singleton.PassVehicles();
         Tracks = singleton.PassTracks();
         Materials = singleton.PassMaterials();
-        
     }
-
 
     void Start()
     {
@@ -34,9 +28,16 @@ public class SetupController : MonoBehaviour
     }
     public void SetupGame(int trackID, PlayersKeeper Players, int LapCount)
     {
-
+        if(LapCount == -1)
+        {
+            GameObject.Find("Top Times:").SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("Top Times:").SetActive(false);
+        }
+        FindObjectOfType<TopTimes>().SetTrackID(trackID);
         MultiPlayerCanvas.SetActive(true);
-        GameObject.Find("Top Times:").SetActive(false);
         MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayers(Players.ExportPlayers());
         MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetMaxLaps(LapCount);
         List<Dictionary<string, KeyCode>> controls = singleton.PassControlsToSetup();

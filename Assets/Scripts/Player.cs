@@ -10,14 +10,12 @@ public class Player : MonoBehaviour
     private int lapsCompleted = 0;
     private int checkpoint = 0;
     private PlayerPanel Panel;
-    private SinglePlayerTimer timerController;
     private MultiPlayerTimer mptimerController;
     private CheckpointController checkpointController;
     private PowerupController powerupController;
     private PlayerController playerController;
     private void Awake()
     {
-        timerController = FindObjectOfType<SinglePlayerTimer>();
         mptimerController = FindObjectOfType<MultiPlayerTimer>();
         checkpointController = FindObjectOfType<CheckpointController>();
         powerupController = FindObjectOfType<PowerupController>();
@@ -56,12 +54,7 @@ public class Player : MonoBehaviour
         lapsCompleted += 1;
         Panel.UpdateLapText(lapsCompleted);
         Panel.LapTime();
-        if (timerController != null)
-            timerController.LapTime();
-        else
-        {
-            mptimerController.LapTime(int.Parse(transform.parent.name), lapsCompleted);
-        }
+        mptimerController.LapTime(int.Parse(transform.parent.name), lapsCompleted);
         Panel.UpdateCheckpointText(checkpoint);
     }
     public void RegisterCheckpoint(GameObject cp)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class PlayerPanel : MonoBehaviour
 {
@@ -19,8 +20,14 @@ public class PlayerPanel : MonoBehaviour
     private int maxLapsNumber;
     private int cpNumber;
     private Color PanelColor;
+    private bool TrainingRace;
+    [SerializeField] private TopTimes topTimes;
     public void SetMaxLapsNumber(int laps)
     {
+        if(laps == -1)
+        {
+            TrainingRace = true;
+        }
         maxLapsNumber = laps;
     }
     public void SetCPNumber(int cp)
@@ -81,6 +88,10 @@ public class PlayerPanel : MonoBehaviour
     public void LapTime()
     {
         float lapTime = GuiTime;
+        if (TrainingRace)
+        {
+            topTimes.SaveTime(lapTime);
+        }
         StartTime = Time.time;
         if (lapTime < BestTime)
         {

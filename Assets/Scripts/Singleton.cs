@@ -83,6 +83,34 @@ public class Singleton : MonoBehaviour
         controlsList[3].Add("Reset", KeyCode.None);
         controlsList[3].Add("Confirm", KeyCode.None);
     }
+    public void SaveControls()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            PlayerPrefs.SetInt("Forwards" + i + 1, (int)controlsList[i]["Forwards"]);
+            PlayerPrefs.SetInt("Backwards" + i + 1, (int)controlsList[i]["Backwards"]);
+            PlayerPrefs.SetInt("Left" + i + 1, (int)controlsList[i]["Left"]);
+            PlayerPrefs.SetInt("Right" + i + 1, (int)controlsList[i]["Right"]);
+            PlayerPrefs.SetInt("Brake" + i + 1, (int)controlsList[i]["Brake"]);
+            PlayerPrefs.SetInt("Reset" + i + 1, (int)controlsList[i]["Reset"]);
+            PlayerPrefs.SetInt("Confirm" + i + 1, (int)controlsList[i]["Confirm"]);
+            PlayerPrefs.SetInt("ControlsSet", 1);
+        }
+        PlayerPrefs.Save();
+    }
+    private void PullControls()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            controlsList[i].Add("Forwards", (KeyCode)PlayerPrefs.GetInt("Forwards" + i + 1, 0));
+            controlsList[i].Add("Backwards", (KeyCode)PlayerPrefs.GetInt("Backwards" + i + 1, 0));
+            controlsList[i].Add("Left", (KeyCode)PlayerPrefs.GetInt("Left" + i + 1, 0));
+            controlsList[i].Add("Right", (KeyCode)PlayerPrefs.GetInt("Right" + i + 1, 0));
+            controlsList[i].Add("Brake", (KeyCode)PlayerPrefs.GetInt("Brake" + i + 1, 0));
+            controlsList[i].Add("Reset", (KeyCode)PlayerPrefs.GetInt("Reset" + i + 1, 0));
+            controlsList[i].Add("Confirm", (KeyCode)PlayerPrefs.GetInt("Confirm" + i + 1, 0));
+        }
+    }
     public Dictionary<string, KeyCode> GetControls(int player)
     {
         return controlsList[player - 1];
@@ -106,14 +134,23 @@ public class Singleton : MonoBehaviour
         {
             i = this;
             DontDestroyOnLoad(gameObject);
-            // Load controls from file
-            SetDefaultControlsP1();
-            SetDefaultControlsP2();
-            SetDefaultControlsP3();
-            SetDefaultControlsP4();
+            if (PlayerPrefs.GetInt("ControlsSet", 0) == 0)
+            {
+                SetDefaultControlsP1();
+                SetDefaultControlsP2();
+                SetDefaultControlsP3();
+                SetDefaultControlsP4();
+                SaveControls();
+            }
+            else
+            {
+                PullControls();
+            }
         }
         else
+        {
             Destroy(gameObject);
+        }
     }
     public void StartGame()
     {
