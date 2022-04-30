@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf13c51f470e7e6438b4ca3e319e1f34, type: 3}
-  m_Name: Boost
+  m_Script: {fileID: 11500000, guid: 3e336532cb4857249bb6da942822d365, type: 3}
+  m_Name: Vehicle 1
   m_EditorClassIdentifier: 
-  PowerupImage: {fileID: 21300000, guid: a904ca0f605739d46adc409e71be49a8, type: 3}
-  Power: 2
+  Vehicle: {fileID: 9073813021564527022, guid: 9cbb90c06ab0ebe4a9b564034fdf24ed, type: 3}
+  price: 0
+  unlocked: 1

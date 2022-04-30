@@ -75,12 +75,12 @@ public class MultiPlayerSelect : MonoBehaviour
             PlayerNotReady[i] = false;
             PlayerRacing[i] = false;
             Dictionary<string, KeyCode> controls = singleton.GetControls(i + 1);
-            PlayerConfirmButtons.Add(controls["Confirm"]);
-            PlayerCancelButtons.Add(controls["Reset"]);
-            PlayerLeftButtons.Add(controls["Left"]);
-            PlayerRightButtons.Add(controls["Right"]);
-            PlayerUpButtons.Add(controls["Forwards"]);
-            PlayerDownButtons.Add(controls["Backwards"]);
+            PlayerConfirmButtons.Add(controls[ControlsStrings.Confirm]);
+            PlayerCancelButtons.Add(controls[ControlsStrings.Reset]);
+            PlayerLeftButtons.Add(controls[ControlsStrings.Left]);
+            PlayerRightButtons.Add(controls[ControlsStrings.Right]);
+            PlayerUpButtons.Add(controls[ControlsStrings.Up]);
+            PlayerDownButtons.Add(controls[ControlsStrings.Down]);
         }
 
     }

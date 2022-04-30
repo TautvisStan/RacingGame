@@ -32,13 +32,13 @@ public class ControlsMenu : MonoBehaviour
     }
     public void Setup()
     {
-        Forwards.text = TryGetControls(controls, "Forwards");
-        Backwards.text = TryGetControls(controls, "Backwards");
-        Left.text = TryGetControls(controls, "Left");
-        Right.text = TryGetControls(controls, "Right");
-        Brake.text = TryGetControls(controls, "Brake");
-        Reset.text = TryGetControls(controls, "Reset");
-        Confirm.text = TryGetControls(controls, "Confirm");
+        Forwards.text = TryGetControls(controls, ControlsStrings.Up);
+        Backwards.text = TryGetControls(controls, ControlsStrings.Down);
+        Left.text = TryGetControls(controls, ControlsStrings.Left);
+        Right.text = TryGetControls(controls, ControlsStrings.Right);
+        Brake.text = TryGetControls(controls, ControlsStrings.Brake);
+        Reset.text = TryGetControls(controls, ControlsStrings.Reset);
+        Confirm.text = TryGetControls(controls, ControlsStrings.Confirm);
     }
     private string TryGetControls(Dictionary<string, KeyCode> controls, string key)
     {

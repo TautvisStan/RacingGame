@@ -3,29 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PowerupController : MonoBehaviour
 {
-    [SerializeField] private GameObject Powerup;
-    public PowerupItem[] Items;
+    private PowerupItem[] Items;
+    private Singleton singleton;
+
+    private void Start()
+    {
+        singleton = FindObjectOfType<Singleton>();
+        Items = singleton.PassPowerups();
+    }
+
     public void PickupPowerup(GameObject powerupObj, Player player)
     {
+        powerupObj.GetComponentInParent<ParticleSystem>().Play();
         powerupObj.SetActive(false);
-        var coord = powerupObj.transform.position;
-        // GameObject firework = Instantiate(Firework, coord, Quaternion.identity);
-        powerupObj.GetComponent<ParticleSystem>().Play();
-        Destroy(powerupObj);
-        CreatePowerup(coord);
+        CreatePowerup(powerupObj);
         int randomItem = Random.Range(0, Items.Length);
         player.Powerup = Items[randomItem];
     }
-    public void CreatePowerup(Vector3 coord)
+
+    public void CreatePowerup(GameObject PowerupObj)
     {
-        StartCoroutine(Respawn(3f, coord));
+        StartCoroutine(Respawn(3f, PowerupObj));
     }
     
-    public IEnumerator Respawn(float delayInSecs, Vector3 coord)
+    public IEnumerator Respawn(float delayInSecs, GameObject PowerupObj)
     {
         yield return new WaitForSeconds(delayInSecs);
-        Instantiate(Powerup, coord, Powerup.transform.rotation, gameObject.transform);
-        Powerup.SetActive(true);
-        
+        PowerupObj.SetActive(true);
     }
 }

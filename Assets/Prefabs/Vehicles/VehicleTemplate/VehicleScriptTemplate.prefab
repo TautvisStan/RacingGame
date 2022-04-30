@@ -103,7 +103,8 @@ MonoBehaviour:
   RL: {fileID: 0}
   RR: {fileID: 0}
   Model: {fileID: 0}
-  SensorLength: 0
-  FrontSPos: {x: 0, y: 0.2, z: 0.5}
-  SideSPos: 0
-  SAngle: 0
+  SensorLength: 5
+  FrontSPos: {x: 0, y: 0.3, z: 0.5}
+  SideSPos: 0.3
+  SAngle: 30
+  steerSpeed: 10

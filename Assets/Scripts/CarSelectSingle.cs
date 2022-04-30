@@ -30,7 +30,7 @@ public class CarSelectSingle : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(controls["Confirm"]))
+        if (Input.GetKeyDown(controls[ControlsStrings.Confirm]))
         {
             if (!selected)
             {
@@ -40,7 +40,7 @@ public class CarSelectSingle : MonoBehaviour
                 SelectedText.SetActive(true);
             }
         }
-        if (Input.GetKeyDown(controls["Reset"]))
+        if (Input.GetKeyDown(controls[ControlsStrings.Reset]))
         {
             if (selected)
             {
@@ -50,7 +50,7 @@ public class CarSelectSingle : MonoBehaviour
                 SelectedText.SetActive(false);
             }
         }
-        if (Input.GetKeyDown(controls["Left"]))
+        if (Input.GetKeyDown(controls[ControlsStrings.Left]))
         {
             if (!selected)
             {
@@ -65,7 +65,7 @@ public class CarSelectSingle : MonoBehaviour
                 DisplayCar();
             }
         }
-        if (Input.GetKeyDown(controls["Right"]))
+        if (Input.GetKeyDown(controls[ControlsStrings.Right]))
         {
             if (!selected)
             {
@@ -80,14 +80,14 @@ public class CarSelectSingle : MonoBehaviour
                 DisplayCar();
             }
         }
-        if (Input.GetKeyDown(controls["Forwards"]))
+        if (Input.GetKeyDown(controls[ControlsStrings.Up]))
         {
             if (!selected)
             {
                 materialNum = carColors.SetColorsNext(PodiumCar, materialNum);
             }
         }
-        if (Input.GetKeyDown(controls["Backwards"]))
+        if (Input.GetKeyDown(controls[ControlsStrings.Down]))
         {
             if (!selected)
             {

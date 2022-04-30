@@ -33,7 +33,7 @@ public class TopTimes : MonoBehaviour
         LapTime.Name = PlayerPrefs.GetString("PlayerName", "Player");
         LapTime.TrackID = TrackID;
         LapTime.Time = time;
-        string json = JsonUtility.ToJson(LapTime) + "/n";
+        string json = JsonUtility.ToJson(LapTime) + "\n";
         File.AppendAllText(Application.dataPath + "/TopTimes.txt", json);
     }
     public void UpdateTopTimes()
