@@ -9,6 +9,7 @@ public class Singleton : MonoBehaviour
     public int TrackID;
     public int LapsCount;
     public bool CarsSelected = false;
+    public int RacePoints;
     [SerializeField] private VehiclesKeeper Vehicles;
     [SerializeField] private TracksKeeper Tracks;
     [SerializeField] private MaterialsKeeper Materials;
@@ -20,37 +21,30 @@ public class Singleton : MonoBehaviour
     {
         Players.SetPlayerInfo(PlayerID, CarID, MaterialID, AI);
     }
+
     public void UnSetPlayer(int PlayerID)
     {
         Players.UnSetPlayerInfo(PlayerID);
     }
-    public Material[] PassMaterials()
-    {
-        return Materials.GetUnlockedMaterials();
-    }
+
     public UnlockableMaterial[] PassUnlockabeMaterials()
     {
         return Materials.GetUnlockableMaterials();
     }
-    public GameObject[] PassVehicles()
-    {
-        return Vehicles.GetUnlockedVehicles();
-    }
-    public UnlockableVehicle[] PassUnlockabeVehicles()
+
+    public UnlockableVehicle[] PassUnlockableVehicles()
     {
         return Vehicles.GetUnlockableVehicles();
     }
-    public GameObject[] PassTracks()
+
+    public UnlockableTrack[] PassUnlockableTracks()
     {
-        return Tracks.GetTracks();
+        return Tracks.GetUnlockableTracks();
     }
-    public GameObject[] PassTracksDisplays()
+
+    public UnlockablePowerup[] PassUnlockablePowerups()
     {
-        return Tracks.GetTracksDisplays();
-    }
-    public PowerupItem[] PassPowerups()
-    {
-        return Powerups.GetPowerups();
+        return Powerups.GetUnlockablePowerups();
     }
 
     public List<Dictionary<string, KeyCode>> PassControlsToSetup()
@@ -58,11 +52,11 @@ public class Singleton : MonoBehaviour
         return Controls.GetControls();
     }
     
-
     public Dictionary<string, KeyCode> GetControls(int player)
     {
         return Controls.GetControls(player - 1);
     }
+
     public void SetControls(Dictionary<string, KeyCode> controls, int player)
     {
         Controls.SetControls(controls, player - 1);
@@ -81,6 +75,7 @@ public class Singleton : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void StartGame()
     {
 
@@ -91,5 +86,12 @@ public class Singleton : MonoBehaviour
             SetupController setupController = FindObjectOfType<SetupController>();
             setupController.SetupGame(TrackID, Players, LapsCount);
         }
+    }
+
+    public void RaceEnd()
+    {
+        int playerPoints = PlayerPrefs.GetInt("Points", 0);
+        PlayerPrefs.SetInt("Points", playerPoints + RacePoints);
+        RacePoints = 0;
     }
 }

@@ -6,17 +6,12 @@ public class UnlocksMenu : MonoBehaviour
 {
     private AbstractUnlockTab UnlockTab = null;
     [SerializeField] private TextMeshProUGUI CostText;
-    [SerializeField] private TextMeshProUGUI PointsText;
     [SerializeField] private GameObject ErrorText;
     private int Price;
     [SerializeField] private GameObject UnlockButton;
-    private int Points;
     [SerializeField] private GameObject Buttons;
-    private void Start()
-    {
-        Points = PlayerPrefs.GetInt("Points", 1000);
-        PointsText.text = Points.ToString();
-    }
+    [SerializeField] private CareerMenu careerMenu;
+
     public void SetTab(AbstractUnlockTab tab)
     {
         Buttons.SetActive(true);
@@ -30,16 +25,19 @@ public class UnlocksMenu : MonoBehaviour
         ErrorText.SetActive(false);
         SetItem();
     }
+
     public void LeftClicked()
     {
         UnlockTab.LeftItem();
         SetItem();
     }
+
     public void RightClicked()
     {
         UnlockTab.RightItem();
         SetItem();
     }
+
     public void SetItem()
     {
         ErrorText.SetActive(false);
@@ -54,14 +52,13 @@ public class UnlocksMenu : MonoBehaviour
             UnlockButton.SetActive(true);
         }
     }
+
     public void UnlockItem()
     {
-        if (Points >= Price)
+        if (careerMenu.Points >= Price)
         {
             ErrorText.SetActive(false);
-            Points -= Price;
-            PlayerPrefs.SetInt("Points", Points);
-            PointsText.text = Points.ToString();
+            careerMenu.Purchased(Price);
             UnlockTab.UnlockItem();
             UnlockButton.SetActive(false);
         }

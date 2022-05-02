@@ -5,6 +5,7 @@ using UnityEngine;
 public class RampOpen : MonoBehaviour
 {
     [SerializeField] private GameObject Ramp;
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))

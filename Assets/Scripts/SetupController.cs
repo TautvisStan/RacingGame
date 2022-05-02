@@ -5,27 +5,29 @@ using UnityEngine.UI;
 
 public class SetupController : MonoBehaviour
 {
-    private GameObject[] Tracks;
-    private GameObject[] Cars;
-    private Material[] Materials;
-    public GameObject EscMenu;
-    public GameObject MultiPlayerCanvas;
-    public GameObject GameOverUI;
+    private UnlockableTrack[] Tracks;
+    private UnlockableVehicle[] Cars;
+    private UnlockableMaterial[] Materials;
+    [SerializeField] GameObject EscMenu;
+    [SerializeField] GameObject MultiPlayerCanvas;
+    [SerializeField] GameObject GameOverUI;
     [SerializeField] private PlayerPanel[] Panels;
     private CheckpointController checkpointController;
     private Singleton singleton;
+
     private void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
-        Cars = singleton.PassVehicles();
-        Tracks = singleton.PassTracks();
-        Materials = singleton.PassMaterials();
+        Cars = singleton.PassUnlockableVehicles();
+        Tracks = singleton.PassUnlockableTracks();
+        Materials = singleton.PassUnlockabeMaterials();
     }
 
     void Start()
     {
         singleton.StartGame();
     }
+
     public void SetupGame(int trackID, PlayersKeeper Players, int LapCount)
     {
         if(LapCount == -1)
@@ -41,14 +43,14 @@ public class SetupController : MonoBehaviour
         MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayers(Players.ExportPlayers());
         MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetMaxLaps(LapCount);
         List<Dictionary<string, KeyCode>> controls = singleton.PassControlsToSetup();
-        Instantiate(Tracks[trackID], new Vector3(0, 0, 0), Tracks[trackID].transform.rotation);
+        Instantiate(Tracks[trackID].Track, new Vector3(0, 0, 0), Tracks[trackID].Track.transform.rotation);
         checkpointController = FindObjectOfType<CheckpointController>();
         for (int i = 0; i < Players.GetPlayerCount(); i++)
         {
             if (Players.IsPlayerRacing(i))
             {
                 GameObject spawn = GameObject.Find(string.Format("Spawn {0}", i + 1));
-                GameObject car = Instantiate(Cars[Players.ReturnCarID(i)], spawn.transform.position, spawn.transform.rotation);
+                GameObject car = Instantiate(Cars[Players.ReturnCarID(i)].Vehicle, spawn.transform.position, spawn.transform.rotation);
                 if(Players.IsPlayerAI(i))
                 {
                     car.GetComponentInChildren<PlayerController>().enabled = false;
@@ -71,6 +73,7 @@ public class SetupController : MonoBehaviour
         }
             MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().StartCountdown();
     }
+
     public void SetCarColor(GameObject car, int materialNum)
     {
         Transform t = car.transform;
@@ -80,15 +83,15 @@ public class SetupController : MonoBehaviour
             {
                 if (tr.gameObject.TryGetComponent<Renderer>(out Renderer renderer))
                 {
-                    renderer.material = Materials[materialNum];
+                    renderer.material = Materials[materialNum].material;
                 }
             }
             SetCarColor(tr.gameObject, materialNum);
         }
     }
+
     public void SetPanelColor(PlayerPanel panel, int materialNum)
     {
-        panel.PaintPanel(Materials[materialNum]);
+        panel.PaintPanel(Materials[materialNum].material);
     }
-
 }

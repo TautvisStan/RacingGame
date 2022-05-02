@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 [CreateAssetMenu(fileName = "New Unlockable Vehicle", menuName = "Unlockables/Vehicle")]
 public class UnlockableVehicle : ScriptableObject
 {

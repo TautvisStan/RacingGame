@@ -5,6 +5,7 @@ using UnityEngine;
 public class Mine : MonoBehaviour
 {
     [SerializeField] private float Power;
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))

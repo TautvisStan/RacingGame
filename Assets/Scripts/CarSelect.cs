@@ -10,7 +10,7 @@ public class CarSelect : MonoBehaviour
     private Singleton singleton;
     private GameObject PodiumCar;
     [SerializeField] private GameObject CarSpawn;
-    private GameObject[] Cars;
+    private UnlockableVehicle[] Cars;
     private bool active = false;
     private bool selected = false;
     private bool AIPlayerLock = false;
@@ -24,18 +24,22 @@ public class CarSelect : MonoBehaviour
     [SerializeField] private GameObject AILeaveButton;
     private int materialNum = -1;
     [SerializeField] private CarColors carColors;
+
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
     }
+
     public void Start()
     {
-        Cars = singleton.PassVehicles();
+        Cars = singleton.PassUnlockableVehicles();
     }
+
     public void DeleteCar()
     {
         Destroy(PodiumCar);
     }
+
     public void AddAI()
     {
         AIPlayer = true;
@@ -54,6 +58,7 @@ public class CarSelect : MonoBehaviour
         AILeaveButton.SetActive(true);
         AIPlayerLock = true;
     }
+
     public void RemoveAI()
     {
         AIPlayerLock = false;
@@ -91,6 +96,7 @@ public class CarSelect : MonoBehaviour
             }
         }
     }
+
     public void ClickedCancel()
     {
         if (active)
@@ -117,11 +123,13 @@ public class CarSelect : MonoBehaviour
             }
         }
     }
+
     public void ClickedLeft()
     {
         if (active)
         {
             Left();
+            DisplayCar();
         }
     }
     public void ClickedRight()
@@ -129,8 +137,10 @@ public class CarSelect : MonoBehaviour
         if (active)
         {
             Right();
+            DisplayCar();
         }
     }
+
     public void ClickedUp()
     {
         if (active)
@@ -138,6 +148,7 @@ public class CarSelect : MonoBehaviour
             materialNum = carColors.SetColorsNext(PodiumCar, materialNum);
         }
     }
+
     public void ClickedDown()
     {
         if (active)
@@ -145,10 +156,11 @@ public class CarSelect : MonoBehaviour
             materialNum = carColors.SetColorsPrevious(PodiumCar, materialNum);
         }
     }
+
     public void DisplayCar()
     {
         GameObject.Destroy(PodiumCar);
-        PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation, this.transform);
+        PodiumCar = Instantiate(Cars[CarID].Vehicle.transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation, this.transform);
         SetLayerRecursively(PodiumCar, "UI");
         PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
         PodiumCar.transform.localScale = CarSpawn.transform.localScale;
@@ -162,6 +174,7 @@ public class CarSelect : MonoBehaviour
             carColors.SetColor(PodiumCar, materialNum);
         }
     }
+
     public void Left()
     {
         if (CarID == 0)
@@ -171,9 +184,13 @@ public class CarSelect : MonoBehaviour
         else
         {
             CarID--;
+        } 
+        if(!Cars[CarID].unlocked)
+        {
+            Left();
         }
-        DisplayCar();
     }
+
     public void Right()
     {
         if (CarID == Cars.Length - 1)
@@ -184,8 +201,12 @@ public class CarSelect : MonoBehaviour
         {
             CarID++;
         }
-        DisplayCar();
+        if (!Cars[CarID].unlocked)
+        {
+            Right();
+        }
     }
+
     public static void SetLayerRecursively(GameObject obj, string layerName)
     {
         obj.layer = LayerMask.NameToLayer(layerName);

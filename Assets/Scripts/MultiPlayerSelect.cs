@@ -17,6 +17,7 @@ public class MultiPlayerSelect : MonoBehaviour
     [SerializeField] private GameObject Controls;
     [SerializeField] private GameObject NextWindowButton;
     [SerializeField] private GameObject TrackSelectMenu;
+
     public void NextMenu()
     {
         foreach (CarSelect podium in PlayerPodiums)
@@ -27,12 +28,14 @@ public class MultiPlayerSelect : MonoBehaviour
         TrackSelectMenu.GetComponent<TrackSelect>().DisplayTrack();
         gameObject.SetActive(false);
     }
+
     public void PlayerSelecting(int player, bool state)
     {
         PlayerNotReady[player] = state;
         Controls.SetActive(true);
         NextWindowButton.SetActive(false);
     }
+
     public void PlayerDone(int player, bool state)
     {
         PlayerRacing[player] = state;
@@ -41,6 +44,7 @@ public class MultiPlayerSelect : MonoBehaviour
             CheckIfReady();
         }
     }
+
     public void CheckIfReady()
     {
         bool allDone = true;
@@ -67,6 +71,7 @@ public class MultiPlayerSelect : MonoBehaviour
             NextWindowButton.SetActive(false);
         }
     }
+
     private void Start()
     {
         singleton = FindObjectOfType<Singleton>();
@@ -82,8 +87,8 @@ public class MultiPlayerSelect : MonoBehaviour
             PlayerUpButtons.Add(controls[ControlsStrings.Up]);
             PlayerDownButtons.Add(controls[ControlsStrings.Down]);
         }
-
     }
+
     private void Update()
     {
         foreach (KeyCode key in PlayerConfirmButtons)

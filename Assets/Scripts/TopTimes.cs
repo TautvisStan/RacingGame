@@ -13,9 +13,11 @@ public class TopTimes : MonoBehaviour
         public int TrackID;
         public float Time = float.MaxValue;
     }
+
     public Text[] NamesText;
     public Text[] TimesText;
     private int TrackID;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -23,10 +25,12 @@ public class TopTimes : MonoBehaviour
             UpdateTopTimes();
         }
     }
+
     public void SetTrackID(int id)
     {
         TrackID = id;
     }
+
     public void SaveTime(float time)
     {
         PlayerLapTime LapTime = new PlayerLapTime();
@@ -36,6 +40,7 @@ public class TopTimes : MonoBehaviour
         string json = JsonUtility.ToJson(LapTime) + "\n";
         File.AppendAllText(Application.dataPath + "/TopTimes.txt", json);
     }
+
     public void UpdateTopTimes()
     {
         PlayerLapTime[] times = new PlayerLapTime[3];
@@ -74,6 +79,7 @@ public class TopTimes : MonoBehaviour
             TimesText[i].text = floatTimeToString(times[i].Time);
         }
     }
+
     public string floatTimeToString(float time)
     {
         if(time == float.MaxValue)

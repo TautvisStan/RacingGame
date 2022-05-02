@@ -16,18 +16,22 @@ public class MultiPlayerTimer : MonoBehaviour
     [SerializeField] private GameOver GameOverUI;
     [SerializeField] private Canvas gameUI;
     [SerializeField] private PlayerPanel[] Panels;
+
     public void SetMaxLaps(int LapCount)
     {
         maxLaps = LapCount;
     }
+
     public void SetPlayers(PlayerInfo[] Players)
     {
         players = Players;
     }
+
     public void SetPlayerGameObject(int player, GameObject obj)
     {
         players[player].PlayerObject = obj;
     }
+
     public void StartCountdown()
     {
         StartCoroutine(Countdown(3));
@@ -46,6 +50,7 @@ public class MultiPlayerTimer : MonoBehaviour
             }
         }
     }
+
     IEnumerator Countdown(int seconds)
     {
         int count = seconds;
@@ -75,6 +80,7 @@ public class MultiPlayerTimer : MonoBehaviour
         }
         img0.enabled = false;
     }
+
     void StartGame()
     {
         foreach (PlayerInfo player in players)
@@ -93,6 +99,7 @@ public class MultiPlayerTimer : MonoBehaviour
             }
         }
     }
+
     public void LapTime(int playerNum, int lapsCompleted)
     {
         if (lapsCompleted == maxLaps)

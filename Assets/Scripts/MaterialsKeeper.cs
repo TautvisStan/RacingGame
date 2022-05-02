@@ -6,10 +6,12 @@ using UnityEngine;
 public class MaterialsKeeper : MonoBehaviour
 {
     [SerializeField] private UnlockableMaterial[] Materials;
+
     private void Start()
     {
         UpdateMaterialStatus();
     }
+
     private void UpdateMaterialStatus()
     {
         for(int i = 0; i < Materials.Length; i++)
@@ -25,23 +27,10 @@ public class MaterialsKeeper : MonoBehaviour
             }
         }
     }
+
     public UnlockableMaterial[] GetUnlockableMaterials()
     {
         UpdateMaterialStatus();
         return Materials;
-    }
-    public Material[] GetUnlockedMaterials()
-    {
-        UpdateMaterialStatus();
-        List<Material> allMaterials = new List<Material>();
-        foreach (UnlockableMaterial material in Materials)
-        {
-            if (material.unlocked)
-            {
-                allMaterials.Add(material.material);
-            }
-        }
-        Material[] foundMaterials = allMaterials.ToArray();
-        return foundMaterials;
     }
 }

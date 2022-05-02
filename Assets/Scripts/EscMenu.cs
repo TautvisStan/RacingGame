@@ -7,6 +7,7 @@ public class EscMenu : MonoBehaviour
 {
     private bool open = false;
     [SerializeField] private Canvas menu;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -23,6 +24,7 @@ public class EscMenu : MonoBehaviour
             }
         }
     }
+
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);

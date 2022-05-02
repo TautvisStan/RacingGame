@@ -6,9 +6,9 @@ public class AIPath : MonoBehaviour
 {
     [SerializeField] private Color color;
     private List<Transform> nodes;
+
     private void OnDrawGizmosSelected()
     {
-        
         Gizmos.color = color;
         Transform[] path = GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();

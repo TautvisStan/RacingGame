@@ -32,15 +32,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform RL;
     [SerializeField] private Transform RR;
     private bool respawned = false;
+
     private void Start()
     {
         ModelRigidbody = Model.GetComponent<Rigidbody>();
         Player = GetComponent<Player>();
     }
+
     public Transform GetTransform()
     {
         return Model.transform;
     }
+
     private void FixedUpdate()
     {
         if (respawned)
@@ -70,6 +73,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
     public void SetControls(Dictionary<string, KeyCode> controls)
     {
         Forwards = controls["Forwards"];
@@ -80,6 +84,7 @@ public class PlayerController : MonoBehaviour
         Brake = controls["Brake"];
         Confirm = controls["Confirm"];
     }
+
     private void GetInput()
     {
         if (Input.GetKey(Right)) horizontalInput = 1;
@@ -90,6 +95,7 @@ public class PlayerController : MonoBehaviour
         if (!Input.GetKey(Forwards) && !Input.GetKey(Backwards)) verticalInput = 0;
         isBraking = Input.GetKey(Brake);
     }
+
     private void HandleMotor()
     {
         FLCol.motorTorque = verticalInput * motorForce;
@@ -106,6 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         ApplyBreaking();
     }
+
     private void ApplyBreaking()
     {
         FRCol.brakeTorque = currentBrakeForce;
@@ -113,12 +120,14 @@ public class PlayerController : MonoBehaviour
         RLCol.brakeTorque = currentBrakeForce;
         RRCol.brakeTorque = currentBrakeForce;
     }
+
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
         FLCol.steerAngle = currentSteerAngle;
         FRCol.steerAngle = currentSteerAngle;
     }
+
     private void UpdateWheels()
     {
         UpdateSingleWheel(FLCol, FL);
@@ -126,6 +135,7 @@ public class PlayerController : MonoBehaviour
         UpdateSingleWheel(RRCol, RR);
         UpdateSingleWheel(RLCol, RL);
     }
+
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);

@@ -31,6 +31,7 @@ public class AIController : MonoBehaviour
     private bool respawned = false;
     private float steerAngle = 0;
     [SerializeField] private float steerSpeed = 5f;
+
     private void Start()
     {
         ModelRigidbody = Model.GetComponent<Rigidbody>();
@@ -45,6 +46,7 @@ public class AIController : MonoBehaviour
             }
         }
     }
+
     private void FixedUpdate()
     {
         
@@ -74,6 +76,7 @@ public class AIController : MonoBehaviour
             }
         }
     }
+
     private void HandleSensors()
     {
         RaycastHit[] raycasts;
@@ -171,6 +174,7 @@ public class AIController : MonoBehaviour
             steerAngle = maxSteerAngle * avoidPower;
         }
     }
+
     private void HandleSteering()
     {
         if (isAvoiding) return;
@@ -178,6 +182,7 @@ public class AIController : MonoBehaviour
         currentSteerAngle = maxSteerAngle * (relativeVector.x / relativeVector.magnitude);
         steerAngle = currentSteerAngle;
     }
+
     private void HandleMotor()
     {
         float force = 0;
@@ -192,6 +197,7 @@ public class AIController : MonoBehaviour
         }
         ApplyTorques(force);
     }
+
     private void ApplyTorques(float force)
     {
         FRCol.brakeTorque = currentBrakeForce;
@@ -203,6 +209,7 @@ public class AIController : MonoBehaviour
         RLCol.motorTorque = force * motorForce;
         RRCol.motorTorque = force * motorForce;
     }
+
     private void CheckDistance()
     {
         if (Vector3.Distance(Model.transform.position, nodes[current].transform.position) < 3f)
@@ -215,9 +222,9 @@ public class AIController : MonoBehaviour
             {
                 current++;
             }
-            Debug.Log(nodes[current]);
         }
     }
+
     private void UpdateWheels()
     {
         UpdateSingleWheel(FLCol, FL);
@@ -225,12 +232,14 @@ public class AIController : MonoBehaviour
         UpdateSingleWheel(RRCol, RR);
         UpdateSingleWheel(RLCol, RL);
     }
+
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
         rot *= Quaternion.Euler(new Vector3(0, 0, 90));
         wheelTransform.SetPositionAndRotation(pos, rot);
     }
+
     private void LerpToAngle()
     {
         FLCol.steerAngle = Mathf.Lerp(FLCol.steerAngle, steerAngle, Time.deltaTime * steerSpeed);

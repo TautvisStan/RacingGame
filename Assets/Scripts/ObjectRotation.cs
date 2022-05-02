@@ -12,6 +12,7 @@ public class ObjectRotation : MonoBehaviour
     [SerializeField] private bool ReverseX = false;
     [SerializeField] private bool ReverseY = false;
     [SerializeField] private bool ReverseZ = false;
+
     void Awake()
     {
         if (ForwardX == true)

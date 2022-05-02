@@ -12,14 +12,16 @@ public class TrackSelect : MonoBehaviour
     private Singleton singleton;
     private GameObject PodiumTrack;
     [SerializeField] private GameObject TrackSpawn;
-    private GameObject[] Tracks;
+    private UnlockableTrack[] Tracks;
     [SerializeField] private TMP_InputField LapsCount;
     [SerializeField] private GameObject ErrorText;
+
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
-        Tracks = singleton.PassTracksDisplays();
+        Tracks = singleton.PassUnlockableTracks();
     }
+
     public void LapsCountChanged(TMP_InputField input)
     {
         if (input.text.Length > 0 && input.text[0] == '-')
@@ -27,13 +29,15 @@ public class TrackSelect : MonoBehaviour
             input.text = input.text.Remove(0, 1);
         }
     }
+
     public void DisplayTrack()
     {
         Destroy(PodiumTrack);
-        PodiumTrack = Instantiate(Tracks[TrackID], TrackSpawn.transform.position, TrackSpawn.transform.rotation, this.transform);
+        PodiumTrack = Instantiate(Tracks[TrackID].TrackDisplay, TrackSpawn.transform.position, TrackSpawn.transform.rotation, this.transform);
         PodiumTrack.transform.localScale = TrackSpawn.transform.localScale;
         SetLayerRecursively(PodiumTrack, "UI");
     }
+
     public void Play()
     {
         if (LapsCount.text.Length > 0 || soloRace)
@@ -48,6 +52,7 @@ public class TrackSelect : MonoBehaviour
             ErrorText.SetActive(true);
         }
     }
+
     public void Left()
     {
         if (TrackID == 0)
@@ -60,6 +65,7 @@ public class TrackSelect : MonoBehaviour
         }
         DisplayTrack();
     }
+
     public void Right()
     {
         if (TrackID == Tracks.Length - 1)
@@ -72,6 +78,7 @@ public class TrackSelect : MonoBehaviour
         }
         DisplayTrack();
     }
+
     public static void SetLayerRecursively(GameObject obj, string layerName)
     {
         obj.layer = LayerMask.NameToLayer(layerName);

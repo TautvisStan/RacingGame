@@ -13,10 +13,11 @@ public static class ControlsStrings
     public const string Confirm = "Confirm";
 
 }
+
 public class ControlsKeeper : MonoBehaviour
 {
-
     List<Dictionary<string, KeyCode>> controlsList = new List<Dictionary<string, KeyCode>>();
+
     public void SetupControls()
     {
         Dictionary<string, KeyCode> controlsP1 = new Dictionary<string, KeyCode>();
@@ -40,19 +41,23 @@ public class ControlsKeeper : MonoBehaviour
             PullControls();
         }
     }
+
     public List<Dictionary<string, KeyCode>> GetControls()
     {
         return controlsList;
     }
+
     public Dictionary<string, KeyCode> GetControls(int player)
     {
         return controlsList[player];
     }
+
     public void SetControls(Dictionary<string, KeyCode> controls, int player)
     {
         controlsList[player] = controls;
         SaveControls();
     }
+
     private void SetDefaultControlsP1()
     {
         controlsList[0].Add(ControlsStrings.Up, KeyCode.W);
@@ -63,6 +68,7 @@ public class ControlsKeeper : MonoBehaviour
         controlsList[0].Add(ControlsStrings.Reset, KeyCode.R);
         controlsList[0].Add(ControlsStrings.Confirm, KeyCode.E);
     }
+
     private void SetDefaultControlsP2()
     {
         controlsList[1].Add(ControlsStrings.Up, KeyCode.UpArrow);
@@ -73,6 +79,7 @@ public class ControlsKeeper : MonoBehaviour
         controlsList[1].Add(ControlsStrings.Reset, KeyCode.RightShift);
         controlsList[1].Add(ControlsStrings.Confirm, KeyCode.Keypad0);
     }
+
     private void SetDefaultControlsP3()
     {
         controlsList[2].Add(ControlsStrings.Up, KeyCode.None);
@@ -83,6 +90,7 @@ public class ControlsKeeper : MonoBehaviour
         controlsList[2].Add(ControlsStrings.Reset, KeyCode.None);
         controlsList[2].Add(ControlsStrings.Confirm, KeyCode.None);
     }
+
     private void SetDefaultControlsP4()
     {
         controlsList[3].Add(ControlsStrings.Up, KeyCode.None);
@@ -93,6 +101,7 @@ public class ControlsKeeper : MonoBehaviour
         controlsList[3].Add(ControlsStrings.Reset, KeyCode.None);
         controlsList[3].Add(ControlsStrings.Confirm, KeyCode.None);
     }
+
     public void SaveControls()
     {
         for (int i = 0; i < 4; i++)
@@ -108,6 +117,7 @@ public class ControlsKeeper : MonoBehaviour
         }
         PlayerPrefs.Save();
     }
+
     private void PullControls()
     {
         for (int i = 0; i < 4; i++)
@@ -121,5 +131,4 @@ public class ControlsKeeper : MonoBehaviour
             controlsList[i].Add(ControlsStrings.Confirm, (KeyCode)PlayerPrefs.GetInt(ControlsStrings.Confirm + i, 0));
         }
     }
-   
 }

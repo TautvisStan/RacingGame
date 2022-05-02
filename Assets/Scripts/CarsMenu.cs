@@ -9,6 +9,7 @@ public class CarsMenu : AbstractUnlockTab
     private GameObject PodiumCar;
     [SerializeField] private GameObject CarSpawn;
     [SerializeField] private Material DefaultMaterial;
+
     public override void LeftItem()
     {
         if (ID == 0)
@@ -21,6 +22,7 @@ public class CarsMenu : AbstractUnlockTab
         }
         SetItemToStage();
     }
+
     public override void RightItem()
     {
         if (ID == vehicles.Length - 1)
@@ -34,12 +36,12 @@ public class CarsMenu : AbstractUnlockTab
         SetItemToStage();
     }
 
-
     private void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
-        vehicles = singleton.PassUnlockabeVehicles();
+        vehicles = singleton.PassUnlockableVehicles();
     }
+
     public override void SetItemToStage()
     {
         Price = vehicles[ID].price;
@@ -55,6 +57,7 @@ public class CarsMenu : AbstractUnlockTab
         SetColor(PodiumCar, DefaultMaterial);
 
     }
+
     public void SetColor(GameObject car, Material material)
     {
         Transform t = car.transform;
@@ -70,6 +73,7 @@ public class CarsMenu : AbstractUnlockTab
             SetColor(tr.gameObject, material);
         }
     }
+
     public static void SetLayerRecursively(GameObject obj, string layerName)
     {
         obj.layer = LayerMask.NameToLayer(layerName);
@@ -78,9 +82,10 @@ public class CarsMenu : AbstractUnlockTab
             SetLayerRecursively(child.gameObject, layerName);
         }
     }
+
     public override void UnlockItem()
     {
         PlayerPrefs.SetInt("Vehicle" + ID, 1);
-        vehicles = singleton.PassUnlockabeVehicles();
+        vehicles = singleton.PassUnlockableVehicles();
     }
 }

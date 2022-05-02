@@ -9,7 +9,7 @@ public class CarSelectSingle : MonoBehaviour
     private Singleton singleton;
     private GameObject PodiumCar;
     [SerializeField] private GameObject CarSpawn;
-    private GameObject[] Cars;
+    private UnlockableVehicle[] Cars;
     private bool selected = false;
     [SerializeField] private GameObject Podium;
     [SerializeField] private GameObject Ready;
@@ -17,17 +17,20 @@ public class CarSelectSingle : MonoBehaviour
     [SerializeField] private CarColors carColors;
     private Dictionary<string, KeyCode> controls;
     [SerializeField] private GameObject SelectedText;
+
     public void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
     }
+
     public void Start()
     {
-        Cars = singleton.PassVehicles();
+        Cars = singleton.PassUnlockableVehicles();
         controls = singleton.GetControls(1);
         Podium.SetActive(true);
         DisplayCar();
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(controls[ControlsStrings.Confirm]))
@@ -54,14 +57,7 @@ public class CarSelectSingle : MonoBehaviour
         {
             if (!selected)
             {
-                if (CarID == 0)
-                {
-                    CarID = Cars.Length - 1;
-                }
-                else
-                {
-                    CarID--;
-                }
+                Left();
                 DisplayCar();
             }
         }
@@ -69,14 +65,7 @@ public class CarSelectSingle : MonoBehaviour
         {
             if (!selected)
             {
-                if (CarID == Cars.Length - 1)
-                {
-                    CarID = 0;
-                }
-                else
-                {
-                    CarID++;
-                }
+                Right();
                 DisplayCar();
             }
         }
@@ -95,10 +84,43 @@ public class CarSelectSingle : MonoBehaviour
             }
         }
     }
+
+    public void Left()
+    {
+        if (CarID == 0)
+        {
+            CarID = Cars.Length - 1;
+        }
+        else
+        {
+            CarID--;
+        }
+        if (!Cars[CarID].unlocked)
+        {
+            Left();
+        }
+    }
+
+    public void Right()
+    {
+        if (CarID == Cars.Length - 1)
+        {
+            CarID = 0;
+        }
+        else
+        {
+            CarID++;
+        }
+        if (!Cars[CarID].unlocked)
+        {
+            Right();
+        }
+    }
+
     public void DisplayCar()
     {
         GameObject.Destroy(PodiumCar);
-        PodiumCar = Instantiate(Cars[CarID].transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
+        PodiumCar = Instantiate(Cars[CarID].Vehicle.transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
         PodiumCar.transform.SetParent(this.gameObject.transform, true);
         PodiumCar.transform.position = CarSpawn.transform.position;
         SetLayerRecursively(PodiumCar, "UI");
@@ -114,6 +136,7 @@ public class CarSelectSingle : MonoBehaviour
             carColors.SetColor(PodiumCar, materialNum);
         }
     }
+
     public static void SetLayerRecursively(GameObject obj, string layerName)
     {
         obj.layer = LayerMask.NameToLayer(layerName);

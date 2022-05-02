@@ -10,6 +10,13 @@ public class GameOver : MonoBehaviour
     [SerializeField] private GameObject[] BestTimeText;
     [SerializeField] private Text WinnerText;
     [SerializeField] private Canvas EndGameCanvas;
+    private Singleton singleton;
+
+    private void Start()
+    {
+        singleton = FindObjectOfType<Singleton>();
+    }
+
     public void EndRace(int winnerNum, PlayerInfo[] players, PlayerPanel[] Panels)
     {
         WinnerText.text = "PLAYER " + winnerNum + " WINS";
@@ -27,7 +34,12 @@ public class GameOver : MonoBehaviour
                 BestTimeText[i].GetComponent<Text>().color = Panels[i].GetColor();
             }
         }
+        if(winnerNum == 1)
+        {
+            singleton.RaceEnd();
+        }
     }
+
     public string FloatTimeToString(float time)
     {
         int minutes = (int)time / 60;
@@ -35,9 +47,9 @@ public class GameOver : MonoBehaviour
         int fraction = (int)(time * 100) % 100;
         return string.Format("Best time {0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
     }
+
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);
     }
-
 }

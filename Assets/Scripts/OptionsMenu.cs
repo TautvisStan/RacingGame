@@ -10,6 +10,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Slider Music;
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private InputField playerName;
+
     private void Start()
     {
         Effects.value = PlayerPrefs.GetFloat("EffectsVolume", 0.75f);
@@ -22,6 +23,7 @@ public class OptionsMenu : MonoBehaviour
         audioMixer.SetFloat("EffectsVolume", Mathf.Log10(slider.value) * 20);
         PlayerPrefs.SetFloat("EffectsVolume", slider.value);
     }
+
     public void SetMusicVolume(Slider slider)
     {
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(slider.value) * 20);
@@ -29,6 +31,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("MusicVolume", slider.value);
         PlayerPrefs.SetFloat("BassVolume", slider.value);
     }
+
     public void UpdatePlayerName(InputField input)
     {
         PlayerPrefs.SetString("PlayerName", input.text);

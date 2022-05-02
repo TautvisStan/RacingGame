@@ -7,6 +7,7 @@ public class BreakableObject : MonoBehaviour
     private int hits = 0;
     [SerializeField] private int MaxHits = 3;
     [SerializeField] private float SecondsToDestroy = 10;
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -26,6 +27,7 @@ public class BreakableObject : MonoBehaviour
             }
         }
     }
+
     IEnumerator DestroyObjectAfter(GameObject gameObject, float seconds)
     {
         yield return new WaitForSeconds(seconds);

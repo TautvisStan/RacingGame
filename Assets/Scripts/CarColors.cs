@@ -5,18 +5,20 @@ using UnityEngine;
 public class CarColors : MonoBehaviour
 {
     private Singleton singleton;
-    private Material[] materials;
+    private UnlockableMaterial[] materials;
     private bool[] inUse;
+
     void Awake()
     {
         singleton = FindObjectOfType<Singleton>();
-        materials = singleton.PassMaterials();
+        materials = singleton.PassUnlockabeMaterials();
         inUse = new bool[materials.Length];
         for (int i = 0; i < inUse.Length; i++)
         {
             inUse[i] = false;
         }
     }
+
     public int GetSpareMaterialsNum()
     {
         int num = 0;
@@ -29,17 +31,19 @@ public class CarColors : MonoBehaviour
         }
         return num;
     }
+
     public int ClearColor(int materialNum)
     {
         inUse[materialNum] = false;
         return -1;
     }
+
     public int SetColorsNext(GameObject car, int materialNum)
     {
         bool available = false;
-        foreach (bool used in inUse)
+        for(int i = 0; i < materials.Length; i++)
         {
-            if(!used)
+            if(!inUse[i] && materials[i].unlocked)
             {
                 available = true;
             }
@@ -57,7 +61,7 @@ public class CarColors : MonoBehaviour
         {
             materialNum = 0;
         }
-        while (inUse[materialNum])
+        while (inUse[materialNum] || !materials[materialNum].unlocked)
         {
             materialNum++;
             if (materialNum == materials.Length)
@@ -69,12 +73,13 @@ public class CarColors : MonoBehaviour
         inUse[materialNum] = true;
         return materialNum;
     }
+
     public int SetColorsPrevious(GameObject car, int materialNum)
     {
         bool available = false;
-        foreach (bool used in inUse)
+        for (int i = 0; i < materials.Length; i++)
         {
-            if (!used)
+            if (!inUse[i] && materials[i].unlocked)
             {
                 available = true;
             }
@@ -92,7 +97,7 @@ public class CarColors : MonoBehaviour
         {
             materialNum = materials.Length - 1;
         }
-        while (inUse[materialNum])
+        while (inUse[materialNum] || !materials[materialNum].unlocked)
         {
             materialNum--;
             if (materialNum == -1)
@@ -104,6 +109,7 @@ public class CarColors : MonoBehaviour
         inUse[materialNum] = true;
         return materialNum;
     }
+
     public void SetColor(GameObject car, int materialNum)
     {
         Transform t = car.transform;
@@ -113,7 +119,7 @@ public class CarColors : MonoBehaviour
             {
                 if (tr.gameObject.TryGetComponent<Renderer>(out Renderer renderer))
                 {
-                    renderer.material = materials[materialNum];
+                    renderer.material = materials[materialNum].material;
                 }
             }
             SetColor(tr.gameObject, materialNum);

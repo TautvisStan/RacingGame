@@ -6,10 +6,12 @@ using UnityEngine;
 public class VehiclesKeeper : MonoBehaviour
 {
     [SerializeField] private UnlockableVehicle[] Vehicles;
+
     private void Start()
     {
         UpdateVehicleStatus();
     }
+
     private void UpdateVehicleStatus()
     {
         for (int i = 0; i < Vehicles.Length; i++)
@@ -25,23 +27,10 @@ public class VehiclesKeeper : MonoBehaviour
             }
         }
     }
+
     public UnlockableVehicle[] GetUnlockableVehicles()
     {
         UpdateVehicleStatus();
         return Vehicles;
-    }
-    public GameObject[] GetUnlockedVehicles()
-    {
-        UpdateVehicleStatus();
-        List<GameObject> allVehicles = new List<GameObject>();
-        foreach (UnlockableVehicle vehicle in Vehicles)
-        {
-            if (vehicle.unlocked)
-            {
-                allVehicles.Add(vehicle.Vehicle);
-            }
-        }
-        GameObject[] foundVehicles = allVehicles.ToArray();
-        return foundVehicles;
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.IO;
 
 public class PlayerPanel : MonoBehaviour
 {
@@ -22,6 +21,7 @@ public class PlayerPanel : MonoBehaviour
     private Color PanelColor;
     private bool TrainingRace;
     [SerializeField] private TopTimes topTimes;
+
     public void SetMaxLapsNumber(int laps)
     {
         if(laps == -1)
@@ -30,25 +30,30 @@ public class PlayerPanel : MonoBehaviour
         }
         maxLapsNumber = laps;
     }
+
     public void SetCPNumber(int cp)
     {
         cpNumber = cp;
     }
+
     public void PaintPanel(Material material)
     {
         GetComponent<Image>().color = material.color;
         PanelColor = material.color;
     }
+
     public void SetImage(Sprite image)
     {
         PowerupImage.enabled = true;
         PowerupImage.sprite = image;
     }
+
     public void UnsetImage()
     {
         PowerupImage.sprite = null;
         PowerupImage.enabled = false;
     }
+
     private void Update()
     {
         if (started)
@@ -60,31 +65,38 @@ public class PlayerPanel : MonoBehaviour
             Timer.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
         }
     }
+
     public Color GetColor()
     {
         return PanelColor;
     }
+
     public float GetBestTime()
     {
         return BestTime;
     }
+
     public void StartRacing()
     {
         started = true;
         StartTime = Time.time;
     }
+
     public void StopRacing()
     {
         started = false;
     }
+
     public void UpdateCheckpointText(int cp)
     {
         CheckpointText.text = $"C {cp}/{cpNumber}";
     }
+
     public void UpdateLapText(int lap)
     {
         LapText.text = $"L {lap}/{maxLapsNumber}";
     }
+
     public void LapTime()
     {
         float lapTime = GuiTime;

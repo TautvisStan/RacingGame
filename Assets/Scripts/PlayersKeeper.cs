@@ -9,9 +9,11 @@ public class PlayerInfo
     public int MaterialID;
     public GameObject PlayerObject;
 }
+
 public class PlayersKeeper : MonoBehaviour
 {
     private PlayerInfo[] Infos;
+
     private void Awake()
     {
         Infos = new PlayerInfo[4];
@@ -20,26 +22,32 @@ public class PlayersKeeper : MonoBehaviour
             Infos[i] = new PlayerInfo();
         }
     }
+
     public PlayerInfo[] ExportPlayers()
     {
         return Infos;
     }
+
     public bool IsPlayerRacing(int PlayerID)
     {
         return Infos[PlayerID].racing;
     }
+
     public bool IsPlayerAI(int PlayerID)
     {
         return Infos[PlayerID].AIRacer;
     }
+
     public int ReturnCarID(int PlayerID)
     {
         return Infos[PlayerID].CarID;
     }
+
     public int ReturnMaterialID(int PlayerID)
     {
         return Infos[PlayerID].MaterialID;
     }
+
     public void SetPlayerInfo(int PlayerID, int CarID, int MaterialID, bool AI)
     {
         Infos[PlayerID].racing = true;
@@ -47,10 +55,12 @@ public class PlayersKeeper : MonoBehaviour
         Infos[PlayerID].MaterialID = MaterialID;
         Infos[PlayerID].AIRacer = AI;
     }
+
     public void UnSetPlayerInfo(int PlayerID)
     {
         Infos[PlayerID].racing = false;
     }
+
     public int GetPlayerCount()
     {
         int count = 0;
@@ -63,6 +73,7 @@ public class PlayersKeeper : MonoBehaviour
         }
         return count;
     }
+
     public void UnSetAllPlayers()
     {
         for (int i = 0; i < Infos.Length; i++)

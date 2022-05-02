@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 public class PowerupController : MonoBehaviour
 {
-    private PowerupItem[] Items;
+    private UnlockablePowerup[] Items;
     private Singleton singleton;
 
     private void Start()
     {
         singleton = FindObjectOfType<Singleton>();
-        Items = singleton.PassPowerups();
+        Items = singleton.PassUnlockablePowerups();
     }
 
     public void PickupPowerup(GameObject powerupObj, Player player)
@@ -18,7 +18,15 @@ public class PowerupController : MonoBehaviour
         powerupObj.SetActive(false);
         CreatePowerup(powerupObj);
         int randomItem = Random.Range(0, Items.Length);
-        player.Powerup = Items[randomItem];
+        while(!Items[randomItem].unlocked)
+        {
+            randomItem++;
+            if(randomItem == Items.Length)
+            {
+                randomItem = 0;
+            }
+        }
+        player.Powerup = Items[randomItem].Powerup;
     }
 
     public void CreatePowerup(GameObject PowerupObj)

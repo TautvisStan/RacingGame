@@ -8,8 +8,11 @@ public abstract class AbstractUnlockTab : MonoBehaviour
     public bool Unlocked;
     public int ID = 0;
     abstract public void UnlockItem();
+
     abstract public void LeftItem();
+
     abstract public void RightItem();
+
     abstract public void SetItemToStage();
 
 }

@@ -7,15 +7,18 @@ public class ModelScript : MonoBehaviour
     [SerializeField] private GameObject ScriptsObject;
     private SoundEffects soundEffectsController;
     [SerializeField] private Vector3 CenterOfMass;
+
     private void Start()
     {
         soundEffectsController = FindObjectOfType<SoundEffects>();
         GetComponent<Rigidbody>().centerOfMass = CenterOfMass;
     }
+
     public PlayerController GetPlayerController()
     {
         return ScriptsObject.GetComponent<PlayerController>();
     }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Checkpoint"))
@@ -27,6 +30,7 @@ public class ModelScript : MonoBehaviour
             ScriptsObject.GetComponent<Player>().RegisterPowerup(collision.gameObject);
         }
     }
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("FunCube"))

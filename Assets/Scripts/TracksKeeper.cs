@@ -1,17 +1,35 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TracksKeeper : MonoBehaviour
 {
-    [SerializeField] private GameObject[] Tracks;
-    [SerializeField] private GameObject[] TracksDisplays;
-    public GameObject[] GetTracks()
+    [SerializeField] private UnlockableTrack[] Tracks;
+    private void Start()
     {
-        return Tracks;
+        UpdateTrackStatus();
     }
-    public GameObject[] GetTracksDisplays()
+
+    private void UpdateTrackStatus()
     {
-        return TracksDisplays;
+        for (int i = 0; i < Tracks.Length; i++)
+        {
+            int status = PlayerPrefs.GetInt("Track" + i, -1);
+            if (status == -1)
+            {
+                PlayerPrefs.SetInt("Track" + i, Tracks[i].unlocked ? 1 : 0);
+            }
+            else
+            {
+                Tracks[i].unlocked = Convert.ToBoolean(status);
+            }
+        }
+    }
+
+    public UnlockableTrack[] GetUnlockableTracks()
+    {
+        UpdateTrackStatus();
+        return Tracks;
     }
 }
