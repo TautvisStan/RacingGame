@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarColors : MonoBehaviour
@@ -22,9 +20,9 @@ public class CarColors : MonoBehaviour
     public int GetSpareMaterialsNum()
     {
         int num = 0;
-        foreach(bool used in inUse)
+        foreach (bool used in inUse)
         {
-            if(!used)
+            if (!used)
             {
                 num++;
             }
@@ -41,9 +39,9 @@ public class CarColors : MonoBehaviour
     public int SetColorsNext(GameObject car, int materialNum)
     {
         bool available = false;
-        for(int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < materials.Length; i++)
         {
-            if(!inUse[i] && materials[i].unlocked)
+            if (!inUse[i] && materials[i].unlocked)
             {
                 available = true;
             }
@@ -55,7 +53,7 @@ public class CarColors : MonoBehaviour
         if (materialNum != -1)
         {
             inUse[materialNum] = false;
-        }     
+        }
         materialNum++;
         if (materialNum == materials.Length)
         {

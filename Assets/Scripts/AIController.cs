@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +19,7 @@ public class AIController : MonoBehaviour
     [SerializeField] private GameObject Model;
     private float currentSteerAngle;
     private float currentBrakeForce;
-    private bool isBraking = false;
+    private readonly bool isBraking = false;
     private List<GameObject> nodes;
     private int current;
     [SerializeField] private float SensorLength;
@@ -49,8 +48,8 @@ public class AIController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        if(respawned)
+
+        if (respawned)
         {
             FLCol.brakeTorque = float.MaxValue;
             FRCol.brakeTorque = float.MaxValue;
@@ -147,7 +146,7 @@ public class AIController : MonoBehaviour
                     if (hit.normal.x < 0)
                     {
                         avoidPower = -1f;
-                    }    
+                    }
                     else
                     {
                         avoidPower = 1f;
@@ -158,16 +157,16 @@ public class AIController : MonoBehaviour
         }
         if (isAvoiding)
         {
-            if(activeSensors == 5)
+            if (activeSensors == 5)
             {
                 avoidPower *= -1;
                 ApplyTorques(-1);
             }
-            if(avoidPower > 1)
+            if (avoidPower > 1)
             {
                 avoidPower = 1;
             }
-            if(avoidPower < -1)
+            if (avoidPower < -1)
             {
                 avoidPower = -1;
             }
@@ -178,7 +177,7 @@ public class AIController : MonoBehaviour
     private void HandleSteering()
     {
         if (isAvoiding) return;
-        Vector3 relativeVector = transform.InverseTransformPoint(nodes[current].transform.position); 
+        Vector3 relativeVector = transform.InverseTransformPoint(nodes[current].transform.position);
         currentSteerAngle = maxSteerAngle * (relativeVector.x / relativeVector.magnitude);
         steerAngle = currentSteerAngle;
     }
@@ -188,7 +187,7 @@ public class AIController : MonoBehaviour
         float force = 0;
         if (isBraking)
         {
-            currentBrakeForce = brakeForce; 
+            currentBrakeForce = brakeForce;
         }
         else
         {
@@ -214,7 +213,7 @@ public class AIController : MonoBehaviour
     {
         if (Vector3.Distance(Model.transform.position, nodes[current].transform.position) < 3f)
         {
-            if(current == nodes.Count - 1)
+            if (current == nodes.Count - 1)
             {
                 current = 0;
             }

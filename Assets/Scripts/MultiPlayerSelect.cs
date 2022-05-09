@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,7 +59,7 @@ public class MultiPlayerSelect : MonoBehaviour
                 atLeastOne = true;
             }
         }
-        if(allDone && atLeastOne)
+        if (allDone && atLeastOne)
         {
             Controls.SetActive(false);
             NextWindowButton.SetActive(true);

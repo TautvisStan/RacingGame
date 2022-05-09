@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,9 +35,9 @@ public class MultiPlayerTimer : MonoBehaviour
         StartCoroutine(Countdown(3));
         foreach (PlayerInfo player in players)
         {
-            if(player.racing)
+            if (player.racing)
             {
-                if(player.AIRacer)
+                if (player.AIRacer)
                 {
                     player.PlayerObject.GetComponentInChildren<AIController>().enabled = false;
                 }
@@ -120,7 +118,7 @@ public class MultiPlayerTimer : MonoBehaviour
                     player.PlayerObject.GetComponentInChildren<Player>().DeactivatePanel();
                     player.PlayerObject.GetComponentInChildren<Player>().enabled = false;
                     player.PlayerObject.GetComponentInChildren<Rigidbody>().isKinematic = true;
-                    player.PlayerObject.GetComponentInChildren<VelocityAudio>().stopEngineSound();
+                    player.PlayerObject.GetComponentInChildren<VelocityAudio>().StopEngineSound();
                 }
             }
             finishAudio.Play();

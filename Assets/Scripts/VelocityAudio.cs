@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class VelocityAudio : MonoBehaviour
 {
-    private float minPitch = 0.9f;
-    private float maxPitch = 1.5f;
-    private float maxSpeed = 10f;
+    private readonly float minPitch = 0.9f;
+    private readonly float maxPitch = 1.5f;
+    private readonly float maxSpeed = 10f;
     private AudioSource audioSource;
     private Rigidbody target;
 
@@ -31,7 +29,7 @@ public class VelocityAudio : MonoBehaviour
         audioSource.pitch = pitch;
     }
 
-    public void stopEngineSound()
+    public void StopEngineSound()
     {
         audioSource.Pause();
     }

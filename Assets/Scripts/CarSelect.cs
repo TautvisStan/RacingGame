@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class CarSelect : MonoBehaviour
 {
@@ -184,8 +181,8 @@ public class CarSelect : MonoBehaviour
         else
         {
             CarID--;
-        } 
-        if(!Cars[CarID].unlocked)
+        }
+        if (!Cars[CarID].unlocked)
         {
             Left();
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ public static class ControlsStrings
 
 public class ControlsKeeper : MonoBehaviour
 {
-    List<Dictionary<string, KeyCode>> controlsList = new List<Dictionary<string, KeyCode>>();
+    readonly List<Dictionary<string, KeyCode>> controlsList = new List<Dictionary<string, KeyCode>>();
 
     public void SetupControls()
     {

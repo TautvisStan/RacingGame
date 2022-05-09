@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class PowerupController : MonoBehaviour
 {
@@ -18,10 +17,10 @@ public class PowerupController : MonoBehaviour
         powerupObj.SetActive(false);
         CreatePowerup(powerupObj);
         int randomItem = Random.Range(0, Items.Length);
-        while(!Items[randomItem].unlocked)
+        while (!Items[randomItem].unlocked)
         {
             randomItem++;
-            if(randomItem == Items.Length)
+            if (randomItem == Items.Length)
             {
                 randomItem = 0;
             }
@@ -33,7 +32,7 @@ public class PowerupController : MonoBehaviour
     {
         StartCoroutine(Respawn(3f, PowerupObj));
     }
-    
+
     public IEnumerator Respawn(float delayInSecs, GameObject PowerupObj)
     {
         yield return new WaitForSeconds(delayInSecs);

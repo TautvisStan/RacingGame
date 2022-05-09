@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MaterialsKeeper : MonoBehaviour
@@ -14,10 +12,10 @@ public class MaterialsKeeper : MonoBehaviour
 
     private void UpdateMaterialStatus()
     {
-        for(int i = 0; i < Materials.Length; i++)
+        for (int i = 0; i < Materials.Length; i++)
         {
             int status = PlayerPrefs.GetInt("Material" + i, -1);
-            if(status == -1)
+            if (status == -1)
             {
                 PlayerPrefs.SetInt("Material" + i, Materials[i].unlocked ? 1 : 0);
             }

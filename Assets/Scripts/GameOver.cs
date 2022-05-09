@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
@@ -21,7 +18,7 @@ public class GameOver : MonoBehaviour
     {
         WinnerText.text = "PLAYER " + winnerNum + " WINS";
         EndGameCanvas.enabled = true;
-        WinnerText.color = Panels[winnerNum-1].GetColor();
+        WinnerText.color = Panels[winnerNum - 1].GetColor();
         for (int i = 0; i < players.Length; i++)
         {
             if (players[i].racing)
@@ -34,7 +31,7 @@ public class GameOver : MonoBehaviour
                 BestTimeText[i].GetComponent<Text>().color = Panels[i].GetColor();
             }
         }
-        if(winnerNum == 1)
+        if (winnerNum == 1)
         {
             singleton.RaceEnd();
         }

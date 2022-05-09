@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class PlayerPanel : MonoBehaviour
 {
@@ -24,7 +21,7 @@ public class PlayerPanel : MonoBehaviour
 
     public void SetMaxLapsNumber(int laps)
     {
-        if(laps == -1)
+        if (laps == -1)
         {
             TrainingRace = true;
         }

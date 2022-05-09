@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SetupController : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class SetupController : MonoBehaviour
 
     public void SetupGame(int trackID, PlayersKeeper Players, int LapCount)
     {
-        if(LapCount == -1)
+        if (LapCount == -1)
         {
             GameObject.Find("Top Times:").SetActive(true);
         }
@@ -51,7 +49,7 @@ public class SetupController : MonoBehaviour
             {
                 GameObject spawn = GameObject.Find(string.Format("Spawn {0}", i + 1));
                 GameObject car = Instantiate(Cars[Players.ReturnCarID(i)].Vehicle, spawn.transform.position, spawn.transform.rotation);
-                if(Players.IsPlayerAI(i))
+                if (Players.IsPlayerAI(i))
                 {
                     car.GetComponentInChildren<PlayerController>().enabled = false;
                 }
@@ -69,9 +67,9 @@ public class SetupController : MonoBehaviour
                 car.GetComponentInChildren<Player>().SetCar(Panels[i]);
                 MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().SetPlayerGameObject(i, car);
             }
-                
+
         }
-            MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().StartCountdown();
+        MultiPlayerCanvas.GetComponent<MultiPlayerTimer>().StartCountdown();
     }
 
     public void SetCarColor(GameObject car, int materialNum)

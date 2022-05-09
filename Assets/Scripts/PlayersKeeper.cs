@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public class PlayerInfo
 {
@@ -17,7 +15,7 @@ public class PlayersKeeper : MonoBehaviour
     private void Awake()
     {
         Infos = new PlayerInfo[4];
-        for(int i = 0; i < Infos.Length; i++)
+        for (int i = 0; i < Infos.Length; i++)
         {
             Infos[i] = new PlayerInfo();
         }
@@ -66,7 +64,7 @@ public class PlayersKeeper : MonoBehaviour
         int count = 0;
         for (int i = 0; i < Infos.Length; i++)
         {
-            if(Infos[i].racing)
+            if (Infos[i].racing)
             {
                 count++;
             }

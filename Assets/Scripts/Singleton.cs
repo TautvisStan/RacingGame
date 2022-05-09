@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Singleton : MonoBehaviour
@@ -16,7 +15,7 @@ public class Singleton : MonoBehaviour
     [SerializeField] private PlayersKeeper Players;
     [SerializeField] private ControlsKeeper Controls;
     [SerializeField] private PowerupsKeeper Powerups;
-    
+
     public void SetPlayer(int PlayerID, int CarID, int MaterialID, bool AI)
     {
         Players.SetPlayerInfo(PlayerID, CarID, MaterialID, AI);
@@ -51,7 +50,7 @@ public class Singleton : MonoBehaviour
     {
         return Controls.GetControls();
     }
-    
+
     public Dictionary<string, KeyCode> GetControls(int player)
     {
         return Controls.GetControls(player - 1);

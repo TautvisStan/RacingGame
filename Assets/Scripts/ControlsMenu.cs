@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +18,7 @@ public class ControlsMenu : MonoBehaviour
 
     public void GetControls(int player)
     {
-        if(changed)
+        if (changed)
         {
             changed = false;
             SaveControls();
@@ -63,7 +62,7 @@ public class ControlsMenu : MonoBehaviour
         if (currentKey != null)
         {
             Event e = Event.current;
-            if(e.isKey)
+            if (e.isKey)
             {
                 controls[currentKey.name] = e.keyCode;
                 RenameButton(currentKey, e.keyCode.ToString());

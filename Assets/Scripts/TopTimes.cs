@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,10 +31,12 @@ public class TopTimes : MonoBehaviour
 
     public void SaveTime(float time)
     {
-        PlayerLapTime LapTime = new PlayerLapTime();
-        LapTime.Name = PlayerPrefs.GetString("PlayerName", "Player");
-        LapTime.TrackID = TrackID;
-        LapTime.Time = time;
+        PlayerLapTime LapTime = new PlayerLapTime
+        {
+            Name = PlayerPrefs.GetString("PlayerName", "Player"),
+            TrackID = TrackID,
+            Time = time
+        };
         string json = JsonUtility.ToJson(LapTime) + "\n";
         File.AppendAllText(Application.dataPath + "/TopTimes.txt", json);
     }
@@ -44,18 +44,18 @@ public class TopTimes : MonoBehaviour
     public void UpdateTopTimes()
     {
         PlayerLapTime[] times = new PlayerLapTime[3];
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             times[i] = new PlayerLapTime();
         }
         if (File.Exists(Application.dataPath + "/TopTimes.txt"))
         {
             string[] jsonLines = File.ReadAllLines(Application.dataPath + "/TopTimes.txt");
-            foreach(string json in jsonLines)
+            foreach (string json in jsonLines)
             {
                 PlayerLapTime newTime = new PlayerLapTime();
                 JsonUtility.FromJsonOverwrite(json, newTime);
-                if(newTime.TrackID == TrackID)
+                if (newTime.TrackID == TrackID)
                 {
                     for (int i = 0; i < 3; i++)
                     {
@@ -76,13 +76,13 @@ public class TopTimes : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             NamesText[i].text = times[i].Name;
-            TimesText[i].text = floatTimeToString(times[i].Time);
+            TimesText[i].text = FloatTimeToString(times[i].Time);
         }
     }
 
-    public string floatTimeToString(float time)
+    public string FloatTimeToString(float time)
     {
-        if(time == float.MaxValue)
+        if (time == float.MaxValue)
         {
             return "--:--:--";
         }

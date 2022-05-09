@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -10,14 +6,14 @@ public class Player : MonoBehaviour
     private int lapsCompleted = 0;
     private int checkpoint = 0;
     private PlayerPanel Panel;
-    private MultiPlayerTimer mptimerController;
+    private MultiPlayerTimer timerController;
     private CheckpointController checkpointController;
     private PowerupController powerupController;
     private PlayerController playerController;
 
     private void Awake()
     {
-        mptimerController = FindObjectOfType<MultiPlayerTimer>();
+        timerController = FindObjectOfType<MultiPlayerTimer>();
         checkpointController = FindObjectOfType<CheckpointController>();
         powerupController = FindObjectOfType<PowerupController>();
         playerController = GetComponent<PlayerController>();
@@ -62,7 +58,7 @@ public class Player : MonoBehaviour
         lapsCompleted += 1;
         Panel.UpdateLapText(lapsCompleted);
         Panel.LapTime();
-        mptimerController.LapTime(int.Parse(transform.parent.name), lapsCompleted);
+        timerController.LapTime(int.Parse(transform.parent.name), lapsCompleted);
         Panel.UpdateCheckpointText(checkpoint);
     }
 

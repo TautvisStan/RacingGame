@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 public class UnlocksMenu : MonoBehaviour
 {
     private AbstractUnlockTab UnlockTab = null;
@@ -15,7 +13,7 @@ public class UnlocksMenu : MonoBehaviour
     public void SetTab(AbstractUnlockTab tab)
     {
         Buttons.SetActive(true);
-        if(UnlockTab != null)
+        if (UnlockTab != null)
         {
             UnlockTab.gameObject.SetActive(false);
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +16,7 @@ public class CareerRace : MonoBehaviour
         Vehicles = singleton.PassUnlockableVehicles();
         Materials = singleton.PassUnlockabeMaterials();
         MaterialsInUse = new bool[Materials.Length];
-        for(int i = 0; i < MaterialsInUse.Length; i++)
+        for (int i = 0; i < MaterialsInUse.Length; i++)
         {
             MaterialsInUse[i] = false;
         }
@@ -34,33 +32,31 @@ public class CareerRace : MonoBehaviour
         int Laps = Random.Range(1, 4);
         singleton.LapsCount = Laps;
         int AIs = Random.Range(1, 4);
-        for(int i = 0; i < AIs; i++)
+        for (int i = 0; i < AIs; i++)
         {
             Vehicle = GetRandomVehicle();
             Material = GetRandomMaterial();
-            
-            singleton.SetPlayer(i+1, Vehicle, Material, true);
+
+            singleton.SetPlayer(i + 1, Vehicle, Material, true);
         }
         singleton.RacePoints = Laps * AIs * 3;
         singleton.GameReady = true;
-        
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public int GetRandomMaterial()
     {
         int Material = Random.Range(0, Materials.Length);
-        Debug.Log("B" + " " + Material + " " + Materials[Material].unlocked + " " + MaterialsInUse[Material]);
         while (!Materials[Material].unlocked || MaterialsInUse[Material])
         {
-            
+
             Material++;
             if (Material == Materials.Length)
             {
                 Material = 0;
             }
         }
-        Debug.Log("A" + " " + Material + " " + Materials[Material].unlocked + " " + MaterialsInUse[Material]);
         MaterialsInUse[Material] = true;
         return Material;
     }

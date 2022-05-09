@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarsMenu : AbstractUnlockTab
@@ -46,14 +44,14 @@ public class CarsMenu : AbstractUnlockTab
     {
         Price = vehicles[ID].price;
         Unlocked = vehicles[ID].unlocked;
-            GameObject.Destroy(PodiumCar);
-            PodiumCar = Instantiate(vehicles[ID].Vehicle.transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
-            PodiumCar.transform.SetParent(this.gameObject.transform, true);
-            PodiumCar.transform.position = CarSpawn.transform.position;
-            SetLayerRecursively(PodiumCar, "UI");
-            PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
-            PodiumCar.transform.localScale = CarSpawn.transform.localScale;
-            PodiumCar.GetComponent<Rigidbody>().mass = 2500;
+        GameObject.Destroy(PodiumCar);
+        PodiumCar = Instantiate(vehicles[ID].Vehicle.transform.Find("Model").gameObject, CarSpawn.transform.position, CarSpawn.transform.rotation);
+        PodiumCar.transform.SetParent(this.gameObject.transform, true);
+        PodiumCar.transform.position = CarSpawn.transform.position;
+        SetLayerRecursively(PodiumCar, "UI");
+        PodiumCar.GetComponentInChildren<AudioSource>().enabled = false;
+        PodiumCar.transform.localScale = CarSpawn.transform.localScale;
+        PodiumCar.GetComponent<Rigidbody>().mass = 2500;
         SetColor(PodiumCar, DefaultMaterial);
 
     }
