@@ -16,6 +16,7 @@ public class MultiPlayerSelect : MonoBehaviour
     [SerializeField] private GameObject Controls;
     [SerializeField] private GameObject NextWindowButton;
     [SerializeField] private GameObject TrackSelectMenu;
+    [SerializeField] private GameObject GoBackButton;
 
     public void NextMenu()
     {
@@ -27,12 +28,25 @@ public class MultiPlayerSelect : MonoBehaviour
         TrackSelectMenu.GetComponent<TrackSelect>().DisplayTrack();
         gameObject.SetActive(false);
     }
-
+    private void CheckGoBackButton()
+    {
+        GoBackButton.SetActive(false);
+        bool noPlayers = true;
+        for (int i = 0; i < 4; i++)
+        {
+            if (PlayerNotReady[i] == true || PlayerRacing[i] == true)
+            {
+                noPlayers = false;
+            }
+        }
+        GoBackButton.SetActive(noPlayers);
+    }
     public void PlayerSelecting(int player, bool state)
     {
         PlayerNotReady[player] = state;
         Controls.SetActive(true);
         NextWindowButton.SetActive(false);
+        CheckGoBackButton();
     }
 
     public void PlayerDone(int player, bool state)
@@ -42,6 +56,7 @@ public class MultiPlayerSelect : MonoBehaviour
         {
             CheckIfReady();
         }
+        CheckGoBackButton();
     }
 
     public void CheckIfReady()

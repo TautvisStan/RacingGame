@@ -15,6 +15,7 @@ public class CarSelectSingle : MonoBehaviour
     [SerializeField] private CarColors carColors;
     private Dictionary<string, KeyCode> controls;
     [SerializeField] private GameObject SelectedText;
+    [SerializeField] private GameObject GoBackButton;
 
     public void Awake()
     {
@@ -39,6 +40,7 @@ public class CarSelectSingle : MonoBehaviour
                 selected = true;
                 Ready.SetActive(true);
                 SelectedText.SetActive(true);
+                GoBackButton.SetActive(false);
             }
         }
         if (Input.GetKeyDown(controls[ControlsStrings.Reset]))
@@ -49,6 +51,7 @@ public class CarSelectSingle : MonoBehaviour
                 Ready.SetActive(false);
                 singleton.UnSetPlayer(0);
                 SelectedText.SetActive(false);
+                GoBackButton.SetActive(true);
             }
         }
         if (Input.GetKeyDown(controls[ControlsStrings.Left]))
@@ -65,20 +68,6 @@ public class CarSelectSingle : MonoBehaviour
             {
                 Right();
                 DisplayCar();
-            }
-        }
-        if (Input.GetKeyDown(controls[ControlsStrings.Up]))
-        {
-            if (!selected)
-            {
-                materialNum = carColors.SetColorsNext(PodiumCar, materialNum);
-            }
-        }
-        if (Input.GetKeyDown(controls[ControlsStrings.Down]))
-        {
-            if (!selected)
-            {
-                materialNum = carColors.SetColorsPrevious(PodiumCar, materialNum);
             }
         }
     }
