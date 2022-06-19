@@ -18,4 +18,13 @@ public class CareerMenu : MonoBehaviour
         PlayerPrefs.SetInt("Points", Points);
         PointsText.text = Points.ToString();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Points += 50;
+            PlayerPrefs.SetInt("Points", Points);
+            PointsText.text = Points.ToString();
+        }
+    }
 }
